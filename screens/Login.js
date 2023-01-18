@@ -18,13 +18,13 @@ export default function Login({ navigation }) {
                     <View style={styles.loginInputs}>
                          <View style={styles.input}>
                               <MaterialIcons name='email' size={18} style={styles.icon} />
-                              <Text style={[styles.formText, globalStyles.boldText]}>Email</Text>
+                              <Text style={[styles.labelText, globalStyles.boldText]}>Email</Text>
                          </View>
                          <TextInput style={[styles.textInput, globalStyles.semiBoldText]} />
 
                          <View style={[styles.input, styles.secondInput]}>
                               <MaterialIcons name='lock' size={18} style={styles.icon} />
-                              <Text style={[styles.formText, globalStyles.boldText]}>Contraseña</Text>
+                              <Text style={[styles.labelText, globalStyles.boldText]}>Contraseña</Text>
                          </View>
                          <TextInput style={[styles.textInput, globalStyles.semiBoldText]} secureTextEntry={true} />
                     </View>
@@ -74,8 +74,9 @@ const styles = StyleSheet.create({
           borderRadius: 10,
           paddingVertical: 3,
           paddingHorizontal: 12,
+          fontSize: 16,
      },
-     formText: {
+     labelText: {
           fontSize: 18,
           marginLeft: 4,
           marginBottom: 4,
@@ -88,9 +89,9 @@ const styles = StyleSheet.create({
      loginBtn: {
           backgroundColor: '#0066CC',
           alignSelf: 'center',
-          width: 248,
+          // width: 248,
           paddingVertical: 10,
-          // paddingHorizontal: 24,
+          paddingHorizontal: 24,
           marginBottom: -20,
           borderRadius: 10,
      },

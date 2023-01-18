@@ -2,11 +2,13 @@ import React from 'react'
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
 import { globalStyles } from '../styles/global';
 
-export default function TopBar() {
+export default function TopBar({ propNavigation }) {
      return (
           <View style={styles.topBar}>
                <TouchableOpacity style={styles.editBtn}>
-                    <Text style={[styles.editBtnText, globalStyles.regularText]}>Editar ficha médica</Text>
+                    <Text style={[styles.editBtnText, globalStyles.regularText]}
+                         onPress={() => propNavigation.navigate('Edit')}
+                    >Editar ficha médica</Text>
                </TouchableOpacity>
 
                <TouchableOpacity style={styles.qrBtn}>
@@ -23,7 +25,7 @@ const styles = StyleSheet.create({
           alignSelf: 'stretch',
           justifyContent: 'space-between',
           height: 50,
-          marginTop: 32,
+          marginTop: 48,
           marginHorizontal: 16,
      },
      editBtn: {

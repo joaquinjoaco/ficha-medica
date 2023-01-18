@@ -8,8 +8,8 @@ export default function Home({ navigation }) {
      return (
 
           <View style={styles.home}>
-               <TopBar />
-               <AlertModal text="¡Ups! No has rellenado tu ficha médica." />
+               <TopBar propNavigation={navigation} />
+               <AlertModal text="¡Ups! No has rellenado tu ficha médica." propNavigation={navigation} />
                <FloatingHomeBtns propNavigation={navigation} />
           </View>
      );
