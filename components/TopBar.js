@@ -5,10 +5,8 @@ import { globalStyles } from '../styles/global';
 export default function TopBar({ propNavigation }) {
      return (
           <View style={styles.topBar}>
-               <TouchableOpacity style={styles.editBtn}>
-                    <Text style={[styles.editBtnText, globalStyles.regularText]}
-                         onPress={() => propNavigation.navigate('Edit')}
-                    >Editar ficha médica</Text>
+               <TouchableOpacity style={styles.editBtn} onPress={() => propNavigation.navigate('Edit')}>
+                    <Text style={[styles.editBtnText, globalStyles.regularText]}>Editar ficha médica</Text>
                </TouchableOpacity>
 
                <TouchableOpacity style={styles.qrBtn}>

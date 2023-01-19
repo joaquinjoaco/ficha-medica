@@ -8,6 +8,7 @@ export default function Antecedentes() {
      const [medicamentos, setMedicamentos] = useState(false);
      const [alimentos, setAlimentos] = useState(false);
      const [animales, setAnimales] = useState(false);
+     const [enfermedadC, setEnfermedadC] = useState(false);
 
      return (
           <View style={styles.container}>
@@ -148,12 +149,65 @@ export default function Antecedentes() {
 
                     </View>
 
+                    {/* Enfermedades e intervenciones textarea */}
                     <View style={styles.input}>
                          <Text style={[styles.h2, globalStyles.boldText]}>Antecedentes de enfermedades e intervenciones quirúrgicas anteriores de importancia:</Text>
                          <TextInput
                               style={[styles.textArea, globalStyles.semiBoldText]}
                               multiline={true}
-                         // numberOfLines={4}
+                              placeholder="..."
+                         />
+                    </View>
+
+                    <View style={styles.input}>
+                         <View style={styles.antecedenteContainer}>
+                              <View style={styles.top}>
+                                   {/* Enfermedad crónica */}
+                                   <Text style={[styles.h2enfermedad, globalStyles.boldText]}>¿Padece de alguna enfermedad crónica?</Text>
+                                   <View style={styles.checks}>
+
+                                        {/* si */}
+                                        <TouchableOpacity style={styles.check}
+                                             onPress={() => setEnfermedadC(true)}>
+                                             <Text style={[styles.checkLabel, globalStyles.semiBoldText]}>Si</Text>
+                                             <View style={styles.outerC}>
+                                                  {enfermedadC && <View style={styles.innerC}></View>}
+                                             </View>
+                                        </TouchableOpacity>
+                                        {/* no */}
+                                        <TouchableOpacity style={styles.check}
+                                             onPress={() => setEnfermedadC(false)}>
+                                             <Text style={[styles.checkLabel, globalStyles.semiBoldText]}>No</Text>
+                                             <View style={styles.outerC}>
+                                                  {!enfermedadC && <View style={styles.innerC}></View>}
+                                             </View>
+                                        </TouchableOpacity>
+
+                                   </View>
+                              </View>
+                              <View style={styles.bottom}>
+                                   {enfermedadC && <TextInput style={[styles.textInput, globalStyles.semiBoldText]} placeholder="¿Cuál/es?" />}
+                              </View>
+                         </View>
+                    </View>
+
+                    {/* Tratamientos textarea */}
+                    <View style={styles.input}>
+                         <Text style={[styles.h2, globalStyles.boldText]}>¿Requiere tratamiento durante el evento?</Text>
+                         <TextInput
+                              style={[styles.textArea, globalStyles.semiBoldText]}
+                              multiline={true}
+                              placeholder="..."
+                         />
+                    </View>
+
+                    {/* Medicamentos textarea */}
+                    <View style={styles.input}>
+                         <Text style={[styles.h2, globalStyles.boldText]}>Medicamentos que se encuentre tomando actualmente, cuales y horarios:</Text>
+                         <TextInput
+                              style={[styles.textArea, globalStyles.semiBoldText]}
+                              multiline={true}
+                              placeholder="..."
                          />
                     </View>
 
@@ -166,8 +220,6 @@ const styles = StyleSheet.create({
      container: {
           marginHorizontal: 16,
           marginTop: 32,
-          marginBottom: 120,
-
      },
      h1: {
           fontSize: 24,
@@ -179,7 +231,7 @@ const styles = StyleSheet.create({
           paddingVertical: 8,
           alignSelf: 'stretch',
           borderRadius: 5,
-          // height: 1103,
+          marginBottom: 16,
      },
      bloodType: {
           flexDirection: 'row',
@@ -215,7 +267,6 @@ const styles = StyleSheet.create({
           fontSize: 18,
           marginBottom: 16,
      },
-
      antecedenteContainer: {
           marginBottom: 16,
           alignSelf: 'stretch',
@@ -257,5 +308,9 @@ const styles = StyleSheet.create({
           width: 5.8,
           backgroundColor: '#000000',
           borderRadius: 100,
+     },
+     h2enfermedad: {
+          fontSize: 18,
+          flex: 0.9,
      },
 });

@@ -4,14 +4,16 @@ import FloatingEditBtns from '../components/FloatingEditBtns';
 import InfPersonal from '../components/forms/InfPersonal';
 import Grupo from '../components/forms/Grupo';
 import Antecedentes from '../components/forms/Antecedentes';
+import GuardarBtn from '../components/GuardarBtn';
 
 export default function Edit({ navigation }) {
      return (
           <View style={styles.edit}>
-               <ScrollView>
+               <ScrollView style={styles.scrollView}>
                     <InfPersonal />
                     <Grupo />
                     <Antecedentes />
+                    <GuardarBtn propNavigation={navigation} />
                </ScrollView>
                <FloatingEditBtns propNavigation={navigation} />
           </View>
