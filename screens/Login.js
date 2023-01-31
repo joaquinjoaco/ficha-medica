@@ -89,14 +89,14 @@ const styles = StyleSheet.create({
      loginBtn: {
           backgroundColor: '#0066CC',
           alignSelf: 'center',
-          // width: 248,
+          width: 180,
           paddingVertical: 10,
-          paddingHorizontal: 24,
+          paddingHorizontal: 18,
           marginBottom: -20,
           borderRadius: 10,
      },
      loginBtnText: {
-          fontSize: 16,
+          fontSize: 18,
           textAlign: 'center',
           color: '#FFFFFF',
      },

@@ -1,6 +1,7 @@
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import { globalStyles } from '../../styles/global';
+import SwitchSelector from "react-native-switch-selector";
 
 export default function Antecedentes() {
 
@@ -25,32 +26,36 @@ export default function Antecedentes() {
 
                     </View>
 
-                    <View style={styles.input}>
+                    <View style={[styles.input, styles.alergiaInput]}>
                          <Text style={[styles.h2, globalStyles.boldText]}>Alergias</Text>
                          <View style={styles.antecedenteContainer}>
                               <View style={styles.top}>
                                    {/* Antibióticos */}
                                    <Text style={[styles.name, globalStyles.boldText]}>Antibióticos</Text>
-                                   <View style={styles.checks}>
 
-                                        {/* si */}
-                                        <TouchableOpacity style={styles.check}
-                                             onPress={() => setAntibioticos(true)}>
-                                             <Text style={[styles.checkLabel, globalStyles.semiBoldText]}>Si</Text>
-                                             <View style={styles.outerC}>
-                                                  {antibioticos && <View style={styles.innerC}></View>}
-                                             </View>
-                                        </TouchableOpacity>
-                                        {/* no */}
-                                        <TouchableOpacity style={styles.check}
-                                             onPress={() => setAntibioticos(false)}>
-                                             <Text style={[styles.checkLabel, globalStyles.semiBoldText]}>No</Text>
-                                             <View style={styles.outerC}>
-                                                  {!antibioticos && <View style={styles.innerC}></View>}
-                                             </View>
-                                        </TouchableOpacity>
+                                   <SwitchSelector
+                                        initial={1}
+                                        textColor='#000000'
+                                        selectedColor='#FFFFFF'
+                                        buttonColor='#0066CC'
+                                        borderColor='#0066CC'
+                                        borderWidth={1.5}
+                                        hasPadding
+                                        valuePadding={1.5}
+                                        options={[
+                                             { label: "Si", value: true },
+                                             { label: "No", value: false }
+                                        ]}
+                                        onPress={(value) => setAntibioticos(value)}
+                                        style={{
+                                             width: 90,
+                                             justifyContent: "center",
+                                             alignItems: "center",
+                                        }}
+                                        height={28}
+                                        selectedTextStyle={globalStyles.semiBoldText}
+                                   />
 
-                                   </View>
                               </View>
                               <View style={styles.bottom}>
                                    {antibioticos && <TextInput style={[styles.textInput, globalStyles.semiBoldText]} placeholder="¿Cuál/es?" />}
@@ -61,26 +66,30 @@ export default function Antecedentes() {
                               <View style={styles.top}>
                                    {/* Medicamentos */}
                                    <Text style={[styles.name, globalStyles.boldText]}>Medicamentos</Text>
-                                   <View style={styles.checks}>
 
-                                        {/* si */}
-                                        <TouchableOpacity style={styles.check}
-                                             onPress={() => setMedicamentos(true)}>
-                                             <Text style={[styles.checkLabel, globalStyles.semiBoldText]}>Si</Text>
-                                             <View style={styles.outerC}>
-                                                  {medicamentos && <View style={styles.innerC}></View>}
-                                             </View>
-                                        </TouchableOpacity>
-                                        {/* no */}
-                                        <TouchableOpacity style={styles.check}
-                                             onPress={() => setMedicamentos(false)}>
-                                             <Text style={[styles.checkLabel, globalStyles.semiBoldText]}>No</Text>
-                                             <View style={styles.outerC}>
-                                                  {!medicamentos && <View style={styles.innerC}></View>}
-                                             </View>
-                                        </TouchableOpacity>
+                                   <SwitchSelector
+                                        initial={1}
+                                        textColor='#000000'
+                                        selectedColor='#FFFFFF'
+                                        buttonColor='#0066CC'
+                                        borderColor='#0066CC'
+                                        borderWidth={1.5}
+                                        hasPadding
+                                        valuePadding={1.5}
+                                        options={[
+                                             { label: "Si", value: true },
+                                             { label: "No", value: false }
+                                        ]}
+                                        onPress={(value) => setMedicamentos(value)}
+                                        style={{
+                                             width: 90,
+                                             justifyContent: "center",
+                                             alignItems: "center",
+                                        }}
+                                        height={28}
+                                        selectedTextStyle={globalStyles.semiBoldText}
+                                   />
 
-                                   </View>
                               </View>
                               <View style={styles.bottom}>
                                    {medicamentos && <TextInput style={[styles.textInput, globalStyles.semiBoldText]} placeholder="¿Cuál/es?" />}
@@ -91,26 +100,30 @@ export default function Antecedentes() {
                               <View style={styles.top}>
                                    {/* Alimentos */}
                                    <Text style={[styles.name, globalStyles.boldText]}>Alimentos</Text>
-                                   <View style={styles.checks}>
 
-                                        {/* si */}
-                                        <TouchableOpacity style={styles.check}
-                                             onPress={() => setAlimentos(true)}>
-                                             <Text style={[styles.checkLabel, globalStyles.semiBoldText]}>Si</Text>
-                                             <View style={styles.outerC}>
-                                                  {alimentos && <View style={styles.innerC}></View>}
-                                             </View>
-                                        </TouchableOpacity>
-                                        {/* no */}
-                                        <TouchableOpacity style={styles.check}
-                                             onPress={() => setAlimentos(false)}>
-                                             <Text style={[styles.checkLabel, globalStyles.semiBoldText]}>No</Text>
-                                             <View style={styles.outerC}>
-                                                  {!alimentos && <View style={styles.innerC}></View>}
-                                             </View>
-                                        </TouchableOpacity>
+                                   <SwitchSelector
+                                        initial={1}
+                                        textColor='#000000'
+                                        selectedColor='#FFFFFF'
+                                        buttonColor='#0066CC'
+                                        borderColor='#0066CC'
+                                        borderWidth={1.5}
+                                        hasPadding
+                                        valuePadding={1.5}
+                                        options={[
+                                             { label: "Si", value: true },
+                                             { label: "No", value: false }
+                                        ]}
+                                        onPress={(value) => setAlimentos(value)}
+                                        style={{
+                                             width: 90,
+                                             justifyContent: "center",
+                                             alignItems: "center",
+                                        }}
+                                        height={28}
+                                        selectedTextStyle={globalStyles.semiBoldText}
+                                   />
 
-                                   </View>
                               </View>
                               <View style={styles.bottom}>
                                    {alimentos && <TextInput style={[styles.textInput, globalStyles.semiBoldText]} placeholder="¿Cuál/es?" />}
@@ -121,26 +134,30 @@ export default function Antecedentes() {
                               <View style={styles.top}>
                                    {/* Animales y/o insectos */}
                                    <Text style={[styles.name, globalStyles.boldText]}>Animales y/o insectos</Text>
-                                   <View style={styles.checks}>
 
-                                        {/* si */}
-                                        <TouchableOpacity style={styles.check}
-                                             onPress={() => setAnimales(true)}>
-                                             <Text style={[styles.checkLabel, globalStyles.semiBoldText]}>Si</Text>
-                                             <View style={styles.outerC}>
-                                                  {animales && <View style={styles.innerC}></View>}
-                                             </View>
-                                        </TouchableOpacity>
-                                        {/* no */}
-                                        <TouchableOpacity style={styles.check}
-                                             onPress={() => setAnimales(false)}>
-                                             <Text style={[styles.checkLabel, globalStyles.semiBoldText]}>No</Text>
-                                             <View style={styles.outerC}>
-                                                  {!animales && <View style={styles.innerC}></View>}
-                                             </View>
-                                        </TouchableOpacity>
+                                   <SwitchSelector
+                                        initial={1}
+                                        textColor='#000000'
+                                        selectedColor='#FFFFFF'
+                                        buttonColor='#0066CC'
+                                        borderColor='#0066CC'
+                                        borderWidth={1.5}
+                                        hasPadding
+                                        valuePadding={1.5}
+                                        options={[
+                                             { label: "Si", value: true },
+                                             { label: "No", value: false }
+                                        ]}
+                                        onPress={(value) => setAnimales(value)}
+                                        style={{
+                                             width: 90,
+                                             justifyContent: "center",
+                                             alignItems: "center",
+                                        }}
+                                        height={28}
+                                        selectedTextStyle={globalStyles.semiBoldText}
+                                   />
 
-                                   </View>
                               </View>
                               <View style={styles.bottom}>
                                    {animales && <TextInput style={[styles.textInput, globalStyles.semiBoldText]} placeholder="¿Cuál/es?" />}
@@ -164,26 +181,31 @@ export default function Antecedentes() {
                               <View style={styles.top}>
                                    {/* Enfermedad crónica */}
                                    <Text style={[styles.h2enfermedad, globalStyles.boldText]}>¿Padece de alguna enfermedad crónica?</Text>
-                                   <View style={styles.checks}>
 
-                                        {/* si */}
-                                        <TouchableOpacity style={styles.check}
-                                             onPress={() => setEnfermedadC(true)}>
-                                             <Text style={[styles.checkLabel, globalStyles.semiBoldText]}>Si</Text>
-                                             <View style={styles.outerC}>
-                                                  {enfermedadC && <View style={styles.innerC}></View>}
-                                             </View>
-                                        </TouchableOpacity>
-                                        {/* no */}
-                                        <TouchableOpacity style={styles.check}
-                                             onPress={() => setEnfermedadC(false)}>
-                                             <Text style={[styles.checkLabel, globalStyles.semiBoldText]}>No</Text>
-                                             <View style={styles.outerC}>
-                                                  {!enfermedadC && <View style={styles.innerC}></View>}
-                                             </View>
-                                        </TouchableOpacity>
+                                   <SwitchSelector
+                                        initial={1}
+                                        textColor='#000000'
+                                        selectedColor='#FFFFFF'
+                                        buttonColor='#0066CC'
+                                        borderColor='#0066CC'
+                                        borderWidth={1.5}
+                                        hasPadding
+                                        valuePadding={1.5}
+                                        options={[
+                                             { label: "Si", value: true },
+                                             { label: "No", value: false }
+                                        ]}
+                                        onPress={(value) => setEnfermedadC(value)}
+                                        style={{
+                                             width: 90,
+                                             justifyContent: "center",
+                                             alignItems: "center",
+                                        }}
+                                        height={28}
+                                        // textStyle={styles.labelText}
+                                        selectedTextStyle={globalStyles.semiBoldText}
+                                   />
 
-                                   </View>
                               </View>
                               <View style={styles.bottom}>
                                    {enfermedadC && <TextInput style={[styles.textInput, globalStyles.semiBoldText]} placeholder="¿Cuál/es?" />}
@@ -230,7 +252,7 @@ const styles = StyleSheet.create({
           backgroundColor: '#FFFFFF',
           paddingVertical: 8,
           alignSelf: 'stretch',
-          borderRadius: 5,
+          borderRadius: 10,
           marginBottom: 16,
      },
      bloodType: {
@@ -243,6 +265,9 @@ const styles = StyleSheet.create({
      input: {
           paddingHorizontal: 16,
           paddingVertical: 8,
+     },
+     alergiaInput: {
+          marginBottom: 24,
      },
      labelText: {
           fontSize: 16,
@@ -264,7 +289,7 @@ const styles = StyleSheet.create({
           height: 125,
      },
      h2: {
-          fontSize: 18,
+          fontSize: 20,
           marginBottom: 16,
      },
      antecedenteContainer: {

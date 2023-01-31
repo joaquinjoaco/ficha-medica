@@ -7,13 +7,14 @@ export const globalStyles = StyleSheet.create({
      mediumText: {
           fontFamily: 'OpenSans-Medium',
      },
+     semiBoldText: {
+          fontFamily: 'OpenSans-SemiBold',
+     },
      boldText: {
           fontFamily: 'OpenSans-Bold',
      },
      extraBoldText: {
           fontFamily: 'OpenSans-ExtraBold',
      },
-     semiBoldText: {
-          fontFamily: 'OpenSans-SemiBold',
-     },
+
 })

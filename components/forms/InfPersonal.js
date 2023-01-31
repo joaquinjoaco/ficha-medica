@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
           backgroundColor: '#FFFFFF',
           paddingVertical: 8,
           alignSelf: 'stretch',
-          borderRadius: 5,
+          borderRadius: 10,
      },
      inputColumn: {
           flex: 1,
@@ -91,6 +91,8 @@ const styles = StyleSheet.create({
      },
      labelText: {
           fontSize: 16,
+          paddingBottom: 2,
+          paddingBottom: 2,
      },
      textInput: {
           backgroundColor: '#F2F3F4',
