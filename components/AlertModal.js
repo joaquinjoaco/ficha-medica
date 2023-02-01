@@ -7,7 +7,7 @@ export default function AlertModal({ text, propNavigation, setIsSaved }) {
           <View style={styles.modal}>
                <View style={styles.modalContent}>
                     <Text numberOfLines={3} style={[styles.modalText, globalStyles.boldText]}>{text}</Text>
-                    <TouchableOpacity style={styles.editBtn} onPress={() => propNavigation.navigate('Edit', { setIsSaved })}>
+                    <TouchableOpacity style={styles.editBtn} onPress={() => propNavigation.navigate('Steps', { setIsSaved })}>
                          <Text style={[styles.editBtnText, globalStyles.regularText]}>Editar ficha médica</Text>
                     </TouchableOpacity>
                </View>
@@ -21,8 +21,6 @@ const styles = StyleSheet.create({
           height: 190,
           marginHorizontal: 16,
           borderRadius: 5,
-          // borderTopRightRadius: 10,
-          // borderBottomRightRadius: 10,
           backgroundColor: '#FFFFFF',
           borderColor: '#E7195A',
           borderLeftWidth: 5,
