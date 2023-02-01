@@ -1,9 +1,9 @@
-import { StyleSheet, ScrollView, View, Text } from 'react-native';
+import { StyleSheet, ScrollView, View } from 'react-native';
 import React from 'react';
 import FloatingEditBtns from '../components/FloatingEditBtns';
 import InfPersonal from '../components/forms/InfPersonal';
 import Grupo from '../components/forms/Grupo';
-import Antecedentes from '../components/forms/Antecedentes';
+// import Antecedentes from '../components/forms/Antecedentes';
 import GuardarBtn from '../components/GuardarBtn';
 
 export default function Edit({ navigation, route }) {

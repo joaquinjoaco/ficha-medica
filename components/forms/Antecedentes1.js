@@ -9,11 +9,16 @@ export default function Antecedentes() {
      const [medicamentos, setMedicamentos] = useState(false);
      const [alimentos, setAlimentos] = useState(false);
      const [animales, setAnimales] = useState(false);
-     const [enfermedadC, setEnfermedadC] = useState(false);
 
      return (
           <View style={styles.container}>
-               <Text style={[styles.h1, globalStyles.boldText]}>Antecedentes médicos</Text>
+               <View style={styles.title}>
+                    <View style={styles.stepCircle}>
+                         <Text style={[styles.step, globalStyles.boldText]}>3</Text>
+                    </View>
+                    <Text style={[styles.h1, globalStyles.boldText]}>Antecedentes médicos</Text>
+               </View>
+
                <View style={styles.inputs}>
 
                     <View style={styles.bloodType}>
@@ -163,76 +168,7 @@ export default function Antecedentes() {
                                    {animales && <TextInput style={[styles.textInput, globalStyles.semiBoldText]} placeholder="¿Cuál/es?" />}
                               </View>
                          </View>
-
                     </View>
-
-                    {/* Enfermedades e intervenciones textarea */}
-                    <View style={styles.input}>
-                         <Text style={[styles.h2, globalStyles.boldText]}>Antecedentes de enfermedades e intervenciones quirúrgicas anteriores de importancia:</Text>
-                         <TextInput
-                              style={[styles.textArea, globalStyles.semiBoldText]}
-                              multiline={true}
-                              placeholder="..."
-                         />
-                    </View>
-
-                    <View style={styles.input}>
-                         <View style={styles.antecedenteContainer}>
-                              <View style={styles.top}>
-                                   {/* Enfermedad crónica */}
-                                   <Text style={[styles.h2enfermedad, globalStyles.boldText]}>¿Padece de alguna enfermedad crónica?</Text>
-
-                                   <SwitchSelector
-                                        initial={1}
-                                        textColor='#000000'
-                                        selectedColor='#FFFFFF'
-                                        buttonColor='#0066CC'
-                                        borderColor='#0066CC'
-                                        borderWidth={1.5}
-                                        hasPadding
-                                        valuePadding={1.5}
-                                        options={[
-                                             { label: "Si", value: true },
-                                             { label: "No", value: false }
-                                        ]}
-                                        onPress={(value) => setEnfermedadC(value)}
-                                        style={{
-                                             width: 90,
-                                             justifyContent: "center",
-                                             alignItems: "center",
-                                        }}
-                                        height={28}
-                                        // textStyle={styles.labelText}
-                                        selectedTextStyle={globalStyles.semiBoldText}
-                                   />
-
-                              </View>
-                              <View style={styles.bottom}>
-                                   {enfermedadC && <TextInput style={[styles.textInput, globalStyles.semiBoldText]} placeholder="¿Cuál/es?" />}
-                              </View>
-                         </View>
-                    </View>
-
-                    {/* Tratamientos textarea */}
-                    <View style={styles.input}>
-                         <Text style={[styles.h2, globalStyles.boldText]}>¿Requiere tratamiento durante el evento?</Text>
-                         <TextInput
-                              style={[styles.textArea, globalStyles.semiBoldText]}
-                              multiline={true}
-                              placeholder="..."
-                         />
-                    </View>
-
-                    {/* Medicamentos textarea */}
-                    <View style={styles.input}>
-                         <Text style={[styles.h2, globalStyles.boldText]}>Medicamentos que se encuentre tomando actualmente, cuales y horarios:</Text>
-                         <TextInput
-                              style={[styles.textArea, globalStyles.semiBoldText]}
-                              multiline={true}
-                              placeholder="..."
-                         />
-                    </View>
-
                </View>
           </View>
      )
@@ -243,10 +179,28 @@ const styles = StyleSheet.create({
           marginHorizontal: 16,
           marginTop: 32,
      },
+
+     title: {
+          flexDirection: 'row',
+     },
+     step: {
+          fontSize: 18,
+          color: '#FFFFFF',
+     },
+     stepCircle: {
+          backgroundColor: '#0066CC',
+          borderRadius: 100,
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: 24,
+          height: 24,
+          marginRight: 8,
+     },
      h1: {
           fontSize: 24,
           marginBottom: 6,
      },
+
      inputs: {
           justifyContent: 'space-between',
           backgroundColor: '#FFFFFF',

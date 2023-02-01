@@ -1,16 +1,17 @@
-import React from 'react'
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
+import React from 'react';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { globalStyles } from '../styles/global';
 
-export default function TopBar({ propNavigation, setIsSaved }) {
+export default function EditTopBar({ step, setStep, propNavigation }) {
      return (
           <View style={styles.topBar}>
-               <TouchableOpacity style={styles.editBtn} onPress={() => propNavigation.navigate('Steps', { setIsSaved })}>
-                    <Text style={[styles.editBtnText, globalStyles.regularText]}>Editar ficha médica</Text>
+               <TouchableOpacity style={styles.editBtn} onPress={() => { step === 1 ? propNavigation.goBack() : setStep(step - 1) }}>
+                    <Text style={[styles.editBtnText, globalStyles.regularText]}>{step === 1 ? "Volver" : "Cancelar"}</Text>
                </TouchableOpacity>
 
-               <TouchableOpacity style={styles.qrBtn}>
-                    <Text style={[styles.qrBtnText, globalStyles.regularText]}>Escanear QR</Text>
+
+               <TouchableOpacity style={styles.qrBtn} onPress={() => { step === 5 ? propNavigation.goBack() : setStep(step + 1) }}>
+                    <Text style={[styles.qrBtnText, globalStyles.regularText]}>{step === 5 ? "Guardar" : "Siguiente"}</Text>
                </TouchableOpacity>
           </View>
      )
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
           marginHorizontal: 16,
      },
      editBtn: {
-          backgroundColor: '#0066CC',
+          backgroundColor: '#000000',
           alignSelf: 'center',
           width: 180,
           paddingVertical: 10,
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
           textAlign: 'center',
      },
      qrBtn: {
-          backgroundColor: '#000000',
+          backgroundColor: '#0066CC',
           alignSelf: 'center',
           width: 190,
           paddingVertical: 10,

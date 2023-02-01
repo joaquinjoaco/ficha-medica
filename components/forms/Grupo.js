@@ -5,7 +5,12 @@ import { globalStyles } from '../../styles/global';
 export default function Grupo() {
      return (
           <View style={styles.container}>
-               <Text style={[styles.h1, globalStyles.boldText]}>Identificación de su grupo</Text>
+               <View style={styles.title}>
+                    <View style={styles.stepCircle}>
+                         <Text style={[styles.step, globalStyles.boldText]}>2</Text>
+                    </View>
+                    <Text style={[styles.h1, globalStyles.boldText]}>Identificación de su grupo</Text>
+               </View>
                <View style={styles.inputs}>
                     <View style={styles.inputColumn}>
 
@@ -42,10 +47,28 @@ const styles = StyleSheet.create({
           marginHorizontal: 16,
           marginTop: 32,
      },
+
+     title: {
+          flexDirection: 'row',
+     },
+     step: {
+          fontSize: 18,
+          color: '#FFFFFF',
+     },
+     stepCircle: {
+          backgroundColor: '#0066CC',
+          borderRadius: 100,
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: 24,
+          height: 24,
+          marginRight: 8,
+     },
      h1: {
           fontSize: 24,
           marginBottom: 6,
      },
+
      inputs: {
           flexDirection: 'row',
           justifyContent: 'space-between',
