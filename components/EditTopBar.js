@@ -11,7 +11,7 @@ export default function EditTopBar({ step, setStep, propNavigation, setIsSaved }
      return (
           <View style={styles.topBar}>
                <TouchableOpacity style={styles.editBtn} onPress={() => { step === 1 ? propNavigation.goBack() : setStep(step - 1) }}>
-                    <Text style={[styles.editBtnText, globalStyles.regularText]}>{step === 1 ? "Volver" : "Cancelar"}</Text>
+                    <Text style={[styles.editBtnText, globalStyles.regularText]}>{step === 1 ? "Cancelar" : "Volver"}</Text>
                </TouchableOpacity>
 
 

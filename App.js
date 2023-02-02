@@ -32,9 +32,6 @@ export default function App() {
         <Stack.Screen name="Home" component={Home} options={{
           headerShown: false,
         }} />
-        {/* <Stack.Screen name="Edit" component={Edit} options={{
-          headerShown: false,
-        }} /> */}
         <Stack.Screen name="Steps" component={Steps} options={{
           headerShown: false,
         }} />
