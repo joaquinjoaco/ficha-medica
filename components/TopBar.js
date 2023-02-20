@@ -2,10 +2,10 @@ import React from 'react'
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
 import { globalStyles } from '../styles/global';
 
-export default function TopBar({ propNavigation, setIsSaved }) {
+export default function TopBar({ propNavigation, setIsSaved, data, setData }) {
      return (
           <View style={styles.topBar}>
-               <TouchableOpacity style={styles.editBtn} onPress={() => propNavigation.navigate('Steps', { setIsSaved })}>
+               <TouchableOpacity style={styles.editBtn} onPress={() => propNavigation.navigate('Edit', { setIsSaved, data, setData })}>
                     <Text style={[styles.editBtnText, globalStyles.regularText]}>Editar ficha médica</Text>
                </TouchableOpacity>
 

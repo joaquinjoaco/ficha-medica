@@ -3,12 +3,9 @@ import React, { useState } from 'react';
 import { globalStyles } from '../../styles/global';
 import SwitchSelector from "react-native-switch-selector";
 
-export default function Antecedentes() {
+export default function Antecedentes({ newData, setNewData }) {
 
-     const [antibioticos, setAntibioticos] = useState(false);
-     const [medicamentos, setMedicamentos] = useState(false);
-     const [alimentos, setAlimentos] = useState(false);
-     const [animales, setAnimales] = useState(false);
+
 
      return (
           <View style={styles.container}>
@@ -25,7 +22,11 @@ export default function Antecedentes() {
                          <View style={styles.inputColumn}>
                               <View style={styles.input}>
                                    <Text style={[styles.labelText, globalStyles.boldText]}>Grupo sanguíneo</Text>
-                                   <TextInput style={[styles.textInput, globalStyles.boldText]} />
+                                   <TextInput
+                                        value={newData.grupoSanguineo}
+                                        onChangeText={text => setNewData({ ...newData, grupoSanguineo: text })}
+                                        style={[styles.textInput, globalStyles.boldText]}
+                                        placeholder="A, B, O, AB" />
                               </View>
                          </View>
 
@@ -39,7 +40,8 @@ export default function Antecedentes() {
                                    <Text style={[styles.name, globalStyles.boldText]}>Antibióticos</Text>
 
                                    <SwitchSelector
-                                        initial={1}
+                                        // If antibioticos is true, then label "Si" will be already selected (e.g. when there is existing data)
+                                        initial={newData.hasAntibioticos ? 0 : 1}
                                         textColor='#000000'
                                         selectedColor='#FFFFFF'
                                         buttonColor='#0066CC'
@@ -51,7 +53,10 @@ export default function Antecedentes() {
                                              { label: "Si", value: true },
                                              { label: "No", value: false }
                                         ]}
-                                        onPress={(value) => setAntibioticos(value)}
+                                        onPress={(value) => {
+                                             // Clears the antibioticos array when pressing the opposite option
+                                             { value === newData.hasAntibioticos ? null : setNewData({ ...newData, hasAntibioticos: value, antibioticos: [] }) }
+                                        }}
                                         style={{
                                              width: 90,
                                              justifyContent: "center",
@@ -63,7 +68,11 @@ export default function Antecedentes() {
 
                               </View>
                               <View style={styles.bottom}>
-                                   {antibioticos && <TextInput style={[styles.textInput, globalStyles.semiBoldText]} placeholder="¿Cuál/es?" />}
+                                   {newData.hasAntibioticos && <TextInput
+                                        value={newData.antibioticos.toString()}
+                                        onChangeText={text => setNewData({ ...newData, antibioticos: text.split(',') })}
+                                        style={[styles.textInput, globalStyles.semiBoldText]}
+                                        placeholder="Separados por comas (Penicilina, Amoxicilina...)" />}
                               </View>
                          </View>
 
@@ -73,7 +82,7 @@ export default function Antecedentes() {
                                    <Text style={[styles.name, globalStyles.boldText]}>Medicamentos</Text>
 
                                    <SwitchSelector
-                                        initial={1}
+                                        initial={newData.hasMedicamentos ? 0 : 1}
                                         textColor='#000000'
                                         selectedColor='#FFFFFF'
                                         buttonColor='#0066CC'
@@ -85,7 +94,9 @@ export default function Antecedentes() {
                                              { label: "Si", value: true },
                                              { label: "No", value: false }
                                         ]}
-                                        onPress={(value) => setMedicamentos(value)}
+                                        onPress={(value) => {
+                                             { value === newData.hasMedicamentos ? null : setNewData({ ...newData, hasMedicamentos: value, medicamentos: [] }) }
+                                        }}
                                         style={{
                                              width: 90,
                                              justifyContent: "center",
@@ -97,7 +108,11 @@ export default function Antecedentes() {
 
                               </View>
                               <View style={styles.bottom}>
-                                   {medicamentos && <TextInput style={[styles.textInput, globalStyles.semiBoldText]} placeholder="¿Cuál/es?" />}
+                                   {newData.hasMedicamentos && <TextInput
+                                        value={newData.medicamentos.toString()}
+                                        onChangeText={text => setNewData({ ...newData, medicamentos: text.split(',') })}
+                                        style={[styles.textInput, globalStyles.semiBoldText]}
+                                        placeholder="Separado por comas (Aspirina, Omeprazol...)" />}
                               </View>
                          </View>
 
@@ -107,7 +122,7 @@ export default function Antecedentes() {
                                    <Text style={[styles.name, globalStyles.boldText]}>Alimentos</Text>
 
                                    <SwitchSelector
-                                        initial={1}
+                                        initial={newData.hasAlimentos ? 0 : 1}
                                         textColor='#000000'
                                         selectedColor='#FFFFFF'
                                         buttonColor='#0066CC'
@@ -119,7 +134,9 @@ export default function Antecedentes() {
                                              { label: "Si", value: true },
                                              { label: "No", value: false }
                                         ]}
-                                        onPress={(value) => setAlimentos(value)}
+                                        onPress={(value) => {
+                                             { value === newData.hasAlimentos ? null : setNewData({ ...newData, hasAlimentos: value, alimentos: [] }) }
+                                        }}
                                         style={{
                                              width: 90,
                                              justifyContent: "center",
@@ -131,7 +148,11 @@ export default function Antecedentes() {
 
                               </View>
                               <View style={styles.bottom}>
-                                   {alimentos && <TextInput style={[styles.textInput, globalStyles.semiBoldText]} placeholder="¿Cuál/es?" />}
+                                   {newData.hasAlimentos && <TextInput
+                                        value={newData.alimentos.toString()}
+                                        onChangeText={text => setNewData({ ...newData, alimentos: text.split(',') })}
+                                        style={[styles.textInput, globalStyles.semiBoldText]}
+                                        placeholder="Separado por comas (Nueces, Soja...)" />}
                               </View>
                          </View>
 
@@ -141,7 +162,7 @@ export default function Antecedentes() {
                                    <Text style={[styles.name, globalStyles.boldText]}>Animales y/o insectos</Text>
 
                                    <SwitchSelector
-                                        initial={1}
+                                        initial={newData.hasAnimales ? 0 : 1}
                                         textColor='#000000'
                                         selectedColor='#FFFFFF'
                                         buttonColor='#0066CC'
@@ -153,7 +174,9 @@ export default function Antecedentes() {
                                              { label: "Si", value: true },
                                              { label: "No", value: false }
                                         ]}
-                                        onPress={(value) => setAnimales(value)}
+                                        onPress={(value) => {
+                                             { value === newData.hasAnimales ? null : setNewData({ ...newData, hasAnimales: value, animales: [] }) }
+                                        }}
                                         style={{
                                              width: 90,
                                              justifyContent: "center",
@@ -165,7 +188,11 @@ export default function Antecedentes() {
 
                               </View>
                               <View style={styles.bottom}>
-                                   {animales && <TextInput style={[styles.textInput, globalStyles.semiBoldText]} placeholder="¿Cuál/es?" />}
+                                   {newData.hasAnimales && <TextInput
+                                        value={newData.animales.toString()}
+                                        onChangeText={text => setNewData({ ...newData, animales: text.split(',') })}
+                                        style={[styles.textInput, globalStyles.semiBoldText]}
+                                        placeholder="Separado por comas (Aves, Gatos...)" />}
                               </View>
                          </View>
                     </View>

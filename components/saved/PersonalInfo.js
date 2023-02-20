@@ -2,7 +2,7 @@ import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 import { globalStyles } from '../../styles/global';
 
-export default function PersonalInfo() {
+export default function PersonalInfo({ data }) {
      return (
           <View>
                <View style={styles.container}>
@@ -13,30 +13,30 @@ export default function PersonalInfo() {
                          <View style={styles.column}>
                               <View style={styles.dataContainer}>
                                    <Text style={[styles.dataName, globalStyles.regularText]}>Dirección</Text>
-                                   <Text style={[styles.data, globalStyles.boldText]}>---</Text>
+                                   <Text style={[styles.data, globalStyles.boldText]}>{data.direccion}</Text>
                               </View>
                               <View style={styles.dataContainer}>
                                    <Text style={[styles.dataName, globalStyles.regularText]}>Teléfono móvil</Text>
-                                   <Text style={[styles.data, globalStyles.boldText]}>---</Text>
+                                   <Text style={[styles.data, globalStyles.boldText]}>{data.telMovil}</Text>
                               </View>
                               <View style={styles.dataContainer}>
                                    <Text style={[styles.dataName, globalStyles.regularText]}>Nombre médico</Text>
-                                   <Text style={[styles.data, globalStyles.boldText]}>---</Text>
+                                   <Text style={[styles.data, globalStyles.boldText]}>{data.nombreMedico}</Text>
                               </View>
                          </View>
 
                          <View style={styles.column}>
                               <View style={styles.dataContainer}>
                                    <Text style={[styles.dataName, globalStyles.regularText]}>Teléfono fijo</Text>
-                                   <Text style={[styles.data, globalStyles.boldText]}>---</Text>
+                                   <Text style={[styles.data, globalStyles.boldText]}>{data.telFijo}</Text>
                               </View>
                               <View style={styles.dataContainer}>
                                    <Text style={[styles.dataName, globalStyles.regularText]}>Sistema de medicina</Text>
-                                   <Text style={[styles.data, globalStyles.boldText]}>---</Text>
+                                   <Text style={[styles.data, globalStyles.boldText]}>{data.sistemaMedicina}</Text>
                               </View>
                               <View style={styles.dataContainer}>
                                    <Text style={[styles.dataName, globalStyles.regularText]}>Teléfono médico</Text>
-                                   <Text style={[styles.data, globalStyles.boldText]}>---</Text>
+                                   <Text style={[styles.data, globalStyles.boldText]}>{data.telMedico}</Text>
                               </View>
                          </View>
 

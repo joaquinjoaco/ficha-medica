@@ -2,10 +2,10 @@ import React from 'react'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
 
-export default function FloatingHomeBtns({ propNavigation }) {
+export default function FloatingHomeBtns({ propNavigation, handleSignOut }) {
      return (
           <View style={styles.homeButtons}>
-               <TouchableOpacity style={styles.btn} onPress={() => propNavigation.goBack()}>
+               <TouchableOpacity style={styles.btn} onPress={() => handleSignOut()}>
                     <MaterialCommunityIcons name="logout" size={25} color="white" />
                </TouchableOpacity>
 

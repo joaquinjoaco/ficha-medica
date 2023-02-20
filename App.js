@@ -6,7 +6,6 @@ import Home from './screens/Home';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Edit from './screens/Edit';
-import Steps from './screens/Edit/Steps';
 
 export default function App() {
 
@@ -26,15 +25,17 @@ export default function App() {
   } else {
     return <NavigationContainer>
       <Stack.Navigator>
+
         <Stack.Screen name="Login" component={Login} options={{
           headerShown: false,
         }} />
         <Stack.Screen name="Home" component={Home} options={{
           headerShown: false,
         }} />
-        <Stack.Screen name="Steps" component={Steps} options={{
+        <Stack.Screen name="Edit" component={Edit} options={{
           headerShown: false,
         }} />
+
       </Stack.Navigator>
     </NavigationContainer>
   }

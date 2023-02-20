@@ -2,7 +2,7 @@ import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 import { globalStyles } from '../../styles/global';
 
-export default function GroupInfo() {
+export default function GroupInfo({ data }) {
      return (
           <View>
                <View style={styles.container}>
@@ -13,22 +13,22 @@ export default function GroupInfo() {
                          <View style={styles.column}>
                               <View style={styles.dataContainer}>
                                    <Text style={[styles.dataName, globalStyles.regularText]}>Grupo</Text>
-                                   <Text style={[styles.data, globalStyles.boldText]}>---</Text>
+                                   <Text style={[styles.data, globalStyles.boldText]}>{data.grupo}</Text>
                               </View>
                               <View style={styles.dataContainer}>
                                    <Text style={[styles.dataName, globalStyles.regularText]}>Distritio</Text>
-                                   <Text style={[styles.data, globalStyles.boldText]}>---</Text>
+                                   <Text style={[styles.data, globalStyles.boldText]}>{data.distrito}</Text>
                               </View>
                          </View>
 
                          <View style={styles.column}>
                               <View style={styles.dataContainer}>
                                    <Text style={[styles.dataName, globalStyles.regularText]}>Responsable a cargo</Text>
-                                   <Text style={[styles.data, globalStyles.boldText]}>---</Text>
+                                   <Text style={[styles.data, globalStyles.boldText]}>{data.responsable}</Text>
                               </View>
                               <View style={styles.dataContainer}>
                                    <Text style={[styles.dataName, globalStyles.regularText]}>Zona</Text>
-                                   <Text style={[styles.data, globalStyles.boldText]}>---</Text>
+                                   <Text style={[styles.data, globalStyles.boldText]}>{data.zona}</Text>
                               </View>
                          </View>
 

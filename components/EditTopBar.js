@@ -2,12 +2,14 @@ import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { globalStyles } from '../styles/global';
 
-export default function EditTopBar({ step, setStep, propNavigation, setIsSaved }) {
+export default function EditTopBar({ step, setStep, propNavigation, setIsSaved, newData, setData }) {
 
      const save = () => {
           setIsSaved(true);
+          setData(newData);
           propNavigation.goBack();
      }
+
      return (
           <View style={styles.topBar}>
                <TouchableOpacity style={styles.editBtn} onPress={() => { step === 1 ? propNavigation.goBack() : setStep(step - 1) }}>

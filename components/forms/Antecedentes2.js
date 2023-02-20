@@ -1,9 +1,8 @@
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import { globalStyles } from '../../styles/global';
-import SwitchSelector from "react-native-switch-selector";
 
-export default function Antecedentes() {
+export default function Antecedentes({ newData, setNewData }) {
 
      return (
           <View style={styles.container}>
@@ -19,6 +18,8 @@ export default function Antecedentes() {
                     <View style={styles.input}>
                          <Text style={[styles.h2, globalStyles.boldText]}>Antecedentes de enfermedades e intervenciones quirúrgicas anteriores de importancia:</Text>
                          <TextInput
+                              value={newData.intervencionesField}
+                              onChangeText={text => setNewData({ ...newData, intervencionesField: text })}
                               style={[styles.textArea, globalStyles.semiBoldText]}
                               multiline={true}
                               placeholder="..."

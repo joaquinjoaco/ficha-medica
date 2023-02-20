@@ -1,12 +1,53 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { MaterialIcons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { globalStyles } from '../styles/global';
+import { auth } from '../firebase';
 
 
 export default function Login({ navigation }) {
+
+     const [email, setEmail] = useState('');
+     const [password, setPassword] = useState('');
+     const [willRegister, setWillRegister] = useState(false);
+
+     useEffect(() => {
+          const unsuscribe = auth.onAuthStateChanged(user => {
+               if (user) {
+                    navigation.navigate('Home');
+               }
+          })
+          return unsuscribe;
+     }, []);
+
+     // sign up
+     const handleSignUp = () => {
+          auth
+               .createUserWithEmailAndPassword(email, password)
+               .then(userCredentials => {
+                    const user = userCredentials.user;
+                    console.log('Registered with:', user.email);
+               })
+               .catch(error => alert(error.message))
+     }
+
+     // log in
+     const handleLogin = () => {
+          auth
+               .signInWithEmailAndPassword(email, password)
+               .then(userCredentials => {
+                    const user = userCredentials.user;
+                    console.log('Logged in with:', user.email);
+               })
+               .catch(error => alert(error.message))
+     }
+
+     // Changes whether the form will be used to Sign up or log in.
+     const changeForm = () => {
+          setWillRegister(!willRegister);
+     }
 
      return (
           <View style={styles.container}>
@@ -16,21 +57,39 @@ export default function Login({ navigation }) {
                </View>
                <View style={styles.loginForm}>
                     <View style={styles.loginInputs}>
+
+                         {/* email */}
                          <View style={styles.input}>
                               <MaterialIcons name='email' size={18} style={styles.icon} />
                               <Text style={[styles.labelText, globalStyles.boldText]}>Email</Text>
                          </View>
-                         <TextInput style={[styles.textInput, globalStyles.semiBoldText]} />
+                         <TextInput
+                              placeholder="ejemplo@ejemplo.com"
+                              value={email}
+                              onChangeText={text => setEmail(text)}
+                              style={[styles.textInput, globalStyles.semiBoldText]}
+                         />
 
+                         {/* password */}
                          <View style={[styles.input, styles.secondInput]}>
                               <MaterialIcons name='lock' size={18} style={styles.icon} />
                               <Text style={[styles.labelText, globalStyles.boldText]}>Contraseña</Text>
                          </View>
-                         <TextInput style={[styles.textInput, globalStyles.semiBoldText]} secureTextEntry={true} />
+                         <TextInput
+                              value={password}
+                              onChangeText={text => setPassword(text)}
+                              style={[styles.textInput, globalStyles.semiBoldText]} secureTextEntry={true} />
+
+                         <Text
+                              style={[styles.willRegister, globalStyles.semiBoldText]}
+                              onPress={() => { changeForm() }}>{willRegister ? "¿Ya tienes una cuenta? Inicia sesión." : "¿No tienes una cuenta? Regístrate."}
+                         </Text>
+
                     </View>
+
                     {/* Button */}
-                    <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate('Home')}>
-                         <Text style={[styles.loginBtnText, globalStyles.semiBoldText]}>Iniciar sesión</Text>
+                    <TouchableOpacity style={[styles.loginBtn, willRegister && styles.registerBtn]} onPress={() => { willRegister ? handleSignUp() : handleLogin() }}>
+                         <Text style={[styles.loginBtnText, globalStyles.semiBoldText]}>{willRegister ? "Registrarme" : "Iniciar sesión"}</Text>
                     </TouchableOpacity>
                </View>
                <StatusBar style="auto" />
@@ -100,4 +159,13 @@ const styles = StyleSheet.create({
           textAlign: 'center',
           color: '#FFFFFF',
      },
+     registerBtn: {
+          backgroundColor: '#00CC66',
+     },
+     willRegister: {
+          marginTop: 8,
+          fontSize: 14,
+          color: '#0066CC',
+          textDecorationLine: 'underline',
+     }
 });

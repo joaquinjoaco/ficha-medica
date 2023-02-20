@@ -2,12 +2,12 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import React from 'react'
 import { globalStyles } from '../styles/global'
 
-export default function AlertModal({ text, propNavigation, setIsSaved }) {
+export default function AlertModal({ text, propNavigation, setIsSaved, data, setData }) {
      return (
           <View style={styles.modal}>
                <View style={styles.modalContent}>
                     <Text numberOfLines={3} style={[styles.modalText, globalStyles.boldText]}>{text}</Text>
-                    <TouchableOpacity style={styles.editBtn} onPress={() => propNavigation.navigate('Steps', { setIsSaved })}>
+                    <TouchableOpacity style={styles.editBtn} onPress={() => propNavigation.navigate('Edit', { setIsSaved, data, setData })}>
                          <Text style={[styles.editBtnText, globalStyles.regularText]}>Editar ficha médica</Text>
                     </TouchableOpacity>
                </View>

@@ -2,19 +2,19 @@ import { View, Text, StyleSheet, TextInput } from 'react-native'
 import React from 'react'
 import { globalStyles } from '../../styles/global';
 
-export default function AntecedentesSaved() {
+export default function AntecedentesSaved({ data }) {
      return (
           <View>
                <View style={styles.container}>
                     <View style={styles.content}>
                          <View style={styles.input}>
                               <Text style={[styles.labelText, globalStyles.boldText]}>Enfermedades crónicas</Text>
-                              <Text style={[styles.textInput, globalStyles.regularText]}>Ninguno</Text>
+                              <Text style={[styles.textInput, globalStyles.regularText]}>{data.enfermedad}</Text>
                          </View>
                          <View style={styles.spacer}></View>
                          <View style={styles.input}>
                               <Text style={[styles.labelText, globalStyles.boldText]}>Tratamiento durante el evento</Text>
-                              <Text style={[styles.textInput, globalStyles.regularText]}>Ninguno</Text>
+                              <Text style={[styles.textInput, globalStyles.regularText]}>{data.tratamientoField}</Text>
                          </View>
                     </View>
                </View>
@@ -23,7 +23,7 @@ export default function AntecedentesSaved() {
                     <View style={styles.content}>
                          <View style={styles.input}>
                               <Text style={[styles.labelText, globalStyles.boldText]}>Medicamentos que se encuentre tomando actualmente, cuales y horarios</Text>
-                              <Text style={[styles.textInput, globalStyles.regularText]}>Ninguno</Text>
+                              <Text style={[styles.textInput, globalStyles.regularText]}>{data.medicamentosField}</Text>
                          </View>
                     </View>
                </View>
@@ -32,7 +32,7 @@ export default function AntecedentesSaved() {
                     <View style={styles.content}>
                          <View style={styles.input}>
                               <Text style={[styles.labelText, globalStyles.boldText]}>Antecedentes de enfermedades e intervenciones quirúrgicas anteriores de importancia</Text>
-                              <Text style={[styles.textInput, globalStyles.regularText]}>Ninguno</Text>
+                              <Text style={[styles.textInput, globalStyles.regularText]}>{data.intervencionesField}</Text>
                          </View>
                     </View>
                </View>

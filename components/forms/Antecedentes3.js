@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { globalStyles } from '../../styles/global';
 import SwitchSelector from "react-native-switch-selector";
 
-export default function Antecedentes() {
+export default function Antecedentes({ newData, setNewData }) {
 
      const [enfermedadC, setEnfermedadC] = useState(false);
 
@@ -26,7 +26,7 @@ export default function Antecedentes() {
                                    <Text style={[styles.h2enfermedad, globalStyles.boldText]}>¿Padece de alguna enfermedad crónica?</Text>
 
                                    <SwitchSelector
-                                        initial={1}
+                                        initial={newData.hasEnfermedad ? 0 : 1}
                                         textColor='#000000'
                                         selectedColor='#FFFFFF'
                                         buttonColor='#0066CC'
@@ -38,7 +38,10 @@ export default function Antecedentes() {
                                              { label: "Si", value: true },
                                              { label: "No", value: false }
                                         ]}
-                                        onPress={(value) => setEnfermedadC(value)}
+                                        onPress={(value) => {
+                                             // Clears the string when pressing the opposite option
+                                             { value === newData.hasEnfermedad ? null : setNewData({ ...newData, hasEnfermedad: value, enfermedad: "" }) }
+                                        }}
                                         style={{
                                              width: 90,
                                              justifyContent: "center",
@@ -51,7 +54,11 @@ export default function Antecedentes() {
 
                               </View>
                               <View style={styles.bottom}>
-                                   {enfermedadC && <TextInput style={[styles.textInput, globalStyles.semiBoldText]} placeholder="¿Cuál/es?" />}
+                                   {newData.hasEnfermedad && <TextInput
+                                        value={newData.enfermedad.toString()}
+                                        onChangeText={text => setNewData({ ...newData, enfermedad: text })}
+                                        style={[styles.textInput, globalStyles.semiBoldText]}
+                                        placeholder="¿Cuál/es?" />}
                               </View>
                          </View>
                     </View>
@@ -60,6 +67,8 @@ export default function Antecedentes() {
                     <View style={styles.input}>
                          <Text style={[styles.h2, globalStyles.boldText]}>¿Requiere tratamiento durante el evento?</Text>
                          <TextInput
+                              value={newData.tratamientoField}
+                              onChangeText={text => setNewData({ ...newData, tratamientoField: text })}
                               style={[styles.textArea, globalStyles.semiBoldText]}
                               multiline={true}
                               placeholder="..."
@@ -70,6 +79,8 @@ export default function Antecedentes() {
                     <View style={styles.input}>
                          <Text style={[styles.h2, globalStyles.boldText]}>Medicamentos que se encuentre tomando actualmente, cuales y horarios:</Text>
                          <TextInput
+                              value={newData.medicamentosField}
+                              onChangeText={text => setNewData({ ...newData, medicamentosField: text })}
                               style={[styles.textArea, globalStyles.semiBoldText]}
                               multiline={true}
                               placeholder="..."

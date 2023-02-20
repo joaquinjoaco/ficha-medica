@@ -2,14 +2,14 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { globalStyles } from '../../styles/global'
 
-export default function PrimaryInfo() {
+export default function PrimaryInfo({ data }) {
      return (
           <View style={styles.primaryContainer}>
                <View style={styles.content}>
-                    <Text numberOfLines={2} style={[styles.name, globalStyles.boldText]}>Nombre Apellido</Text>
+                    <Text numberOfLines={2} style={[styles.name, globalStyles.boldText]}>{data.nombres + '\n' + data.apellidos}</Text>
                     <View style={styles.dataContainer} >
                          <Text style={[styles.dataName, globalStyles.regularText]}>RUN</Text>
-                         <Text style={[styles.data, globalStyles.boldText]}>111.111.111</Text>
+                         <Text style={[styles.data, globalStyles.boldText]}>{data.run}</Text>
                     </View>
                </View>
 
@@ -17,12 +17,12 @@ export default function PrimaryInfo() {
                     <View style={[styles.bloodTContainer, globalStyles.boldText]}>
                          <View style={styles.wrapper}>
                               <Text style={[styles.bloodTypeTitle, globalStyles.regularText]}>Grupo sanguíneo</Text>
-                              <Text style={[styles.bloodType, globalStyles.boldText]}>B+</Text>
+                              <Text style={[styles.bloodType, globalStyles.boldText]}>{data.grupoSanguineo}</Text>
                          </View>
                     </View>
                     <View style={styles.dataContainer} >
                          <Text style={[styles.dataName, globalStyles.regularText]}>Fecha de nacimiento</Text>
-                         <Text style={[styles.data, globalStyles.boldText]}>DD/MM/YYYY</Text>
+                         <Text style={[styles.data, globalStyles.boldText]}>{data.fechaNac}</Text>
                     </View>
                </View>
           </View>
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
           justifyContent: 'space-between',
           paddingVertical: 16,
           paddingHorizontal: 24,
-          flex: 0.5,
+          flex: 1,
           height: 190,
      },
 
@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
      name: {
           fontSize: 40,
           lineHeight: 50,
+          width: 180,
           color: '#000000',
           marginTop: 4,
      },

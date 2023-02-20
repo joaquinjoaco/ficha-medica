@@ -2,7 +2,7 @@ import { View, Text, TextInput, StyleSheet } from 'react-native'
 import React from 'react'
 import { globalStyles } from '../../styles/global';
 
-export default function Grupo() {
+export default function Grupo({ newData, setNewData }) {
      return (
           <View style={styles.container}>
                <View style={styles.title}>
@@ -16,11 +16,17 @@ export default function Grupo() {
 
                          <View style={styles.input}>
                               <Text style={[styles.labelText, globalStyles.boldText]}>Grupo</Text>
-                              <TextInput style={[styles.textInput, globalStyles.semiBoldText]} />
+                              <TextInput
+                                   value={newData.grupo}
+                                   onChangeText={text => setNewData({ ...newData, grupo: text })}
+                                   style={[styles.textInput, globalStyles.semiBoldText]} />
                          </View>
                          <View style={styles.input}>
                               <Text style={[styles.labelText, globalStyles.boldText]}>Distrito</Text>
-                              <TextInput style={[styles.textInput, globalStyles.semiBoldText]} />
+                              <TextInput
+                                   value={newData.distrito}
+                                   onChangeText={text => setNewData({ ...newData, distrito: text })}
+                                   style={[styles.textInput, globalStyles.semiBoldText]} />
                          </View>
 
                     </View>
@@ -29,11 +35,17 @@ export default function Grupo() {
 
                          <View style={styles.input}>
                               <Text style={[styles.labelText, globalStyles.boldText]}>Responsable a cargo</Text>
-                              <TextInput style={[styles.textInput, globalStyles.semiBoldText]} />
+                              <TextInput
+                                   value={newData.responsable}
+                                   onChangeText={text => setNewData({ ...newData, responsable: text })}
+                                   style={[styles.textInput, globalStyles.semiBoldText]} />
                          </View>
                          <View style={styles.input}>
                               <Text style={[styles.labelText, globalStyles.boldText]}>Zona</Text>
-                              <TextInput style={[styles.textInput, globalStyles.semiBoldText]} />
+                              <TextInput
+                                   value={newData.zona}
+                                   onChangeText={text => setNewData({ ...newData, zona: text })}
+                                   style={[styles.textInput, globalStyles.semiBoldText]} />
                          </View>
 
                     </View>

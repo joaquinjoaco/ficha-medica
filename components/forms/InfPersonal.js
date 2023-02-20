@@ -2,7 +2,7 @@ import { View, Text, TextInput, StyleSheet } from 'react-native'
 import React from 'react'
 import { globalStyles } from '../../styles/global';
 
-export default function InfPersonal() {
+export default function InfPersonal({ newData, setNewData }) {
      return (
           <View style={styles.container}>
                <View style={styles.title}>
@@ -17,52 +17,96 @@ export default function InfPersonal() {
 
                          <View style={styles.input}>
                               <Text style={[styles.labelText, globalStyles.boldText]}>RUN</Text>
-                              <TextInput style={[styles.textInput, globalStyles.semiBoldText]} />
+                              <TextInput
+                                   value={newData.run}
+                                   onChangeText={text => setNewData({ ...newData, run: text })}
+                                   style={[styles.textInput, globalStyles.semiBoldText]}
+                              />
                          </View>
                          <View style={styles.input}>
                               <Text style={[styles.labelText, globalStyles.boldText]}>Apellidos</Text>
-                              <TextInput style={[styles.textInput, globalStyles.semiBoldText]} />
+                              <TextInput
+                                   value={newData.apellidos}
+                                   onChangeText={text => setNewData({ ...newData, apellidos: text })}
+                                   style={[styles.textInput, globalStyles.semiBoldText]}
+                              />
                          </View>
                          <View style={styles.input}>
                               <Text style={[styles.labelText, globalStyles.boldText]}>Dirección</Text>
-                              <TextInput style={[styles.textInput, globalStyles.semiBoldText]} />
+                              <TextInput
+                                   value={newData.direccion}
+                                   onChangeText={text => setNewData({ ...newData, direccion: text })}
+                                   style={[styles.textInput, globalStyles.semiBoldText]}
+                              />
                          </View>
                          <View style={styles.input}>
                               <Text style={[styles.labelText, globalStyles.boldText]}>Teléfono móvil</Text>
-                              <TextInput style={[styles.textInput, globalStyles.semiBoldText]} />
+                              <TextInput
+                                   value={newData.telMovil}
+                                   onChangeText={text => setNewData({ ...newData, telMovil: text })}
+                                   style={[styles.textInput, globalStyles.semiBoldText]}
+                              />
                          </View>
                          <View style={styles.input}>
                               <Text style={[styles.labelText, globalStyles.boldText]}>Nombre médico</Text>
-                              <TextInput style={[styles.textInput, globalStyles.semiBoldText]} />
+                              <TextInput
+                                   value={newData.nombreMedico}
+                                   onChangeText={text => setNewData({ ...newData, nombreMedico: text })}
+                                   style={[styles.textInput, globalStyles.semiBoldText]}
+                              />
                          </View>
                          <View style={styles.input}>
                               <Text style={[styles.labelText, globalStyles.boldText]}>Contacto de emergencia</Text>
-                              <TextInput style={[styles.textInput, globalStyles.semiBoldText]} />
+                              <TextInput
+                                   value={newData.contactoEmergencia}
+                                   onChangeText={text => setNewData({ ...newData, contactoEmergencia: text })}
+                                   style={[styles.textInput, globalStyles.semiBoldText]}
+                              />
                          </View>
 
                     </View>
 
                     <View style={styles.inputColumn}>
-
+                         {/* TODO: Make the date input field a proper date input field. */}
                          <View style={styles.input}>
                               <Text style={[styles.labelText, globalStyles.boldText]}>Fecha de Nacimiento</Text>
-                              <TextInput style={[styles.textInput, globalStyles.semiBoldText]} />
+                              <TextInput
+                                   value={newData.fechaNac}
+                                   onChangeText={text => setNewData({ ...newData, fechaNac: text })}
+                                   style={[styles.textInput, globalStyles.semiBoldText]}
+                              />
                          </View>
                          <View style={styles.input}>
                               <Text style={[styles.labelText, globalStyles.boldText]}>Nombres</Text>
-                              <TextInput style={[styles.textInput, globalStyles.semiBoldText]} />
+                              <TextInput
+                                   value={newData.nombres}
+                                   onChangeText={text => setNewData({ ...newData, nombres: text })}
+                                   style={[styles.textInput, globalStyles.semiBoldText]}
+                              />
                          </View>
                          <View style={styles.input}>
                               <Text style={[styles.labelText, globalStyles.boldText]}>Teléfono fijo</Text>
-                              <TextInput style={[styles.textInput, globalStyles.semiBoldText]} />
+                              <TextInput
+                                   value={newData.telFijo}
+                                   onChangeText={text => setNewData({ ...newData, telFijo: text })}
+                                   style={[styles.textInput, globalStyles.semiBoldText]}
+                              />
                          </View>
                          <View style={styles.input}>
                               <Text style={[styles.labelText, globalStyles.boldText]}>Sistema de medicina</Text>
-                              <TextInput style={[styles.textInput, globalStyles.semiBoldText]} />
+                              <TextInput
+                                   value={newData.sistemaMedicina}
+                                   onChangeText={text => setNewData({ ...newData, sistemaMedicina: text })}
+                                   style={[styles.textInput, globalStyles.semiBoldText]}
+                              />
                          </View>
                          <View style={styles.input}>
                               <Text style={[styles.labelText, globalStyles.boldText]}>Teléfono médico</Text>
-                              <TextInput style={[styles.textInput, globalStyles.semiBoldText]} />
+                              <TextInput
+                                   value={newData.telMedico}
+                                   onChangeText={text => setNewData({ ...newData, telMedico: text })}
+                                   style={[styles.textInput, globalStyles.semiBoldText]}
+                              />
                          </View>
 
                     </View>
