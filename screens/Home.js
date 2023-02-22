@@ -9,11 +9,13 @@ import GroupInfo from "../components/saved/GroupInfo";
 import PersonalInfo from "../components/saved/PersonalInfo";
 import PrimaryInfo from "../components/saved/PrimaryInfo";
 import TopBar from "../components/TopBar";
-import { auth } from "../firebase";
+// import { auth } from "../firebase-config";
+
 
 export default function Home({ navigation }) {
 
      const [isSaved, setIsSaved] = useState(false);
+     // const data = getDataFromFirebase(); <---- custom hook, it should return the data :D
      const [data, setData] = useState({
           // (1) Personal Info
           run: 0,
@@ -53,14 +55,24 @@ export default function Home({ navigation }) {
           medicamentosField: "",
      });
 
-     const handleSignOut = () => {
-          auth
-               .signOut()
-               .then(() => {
-                    navigation.replace('Login');
-               })
-               .catch(error => alert(error.message))
-     }
+
+     // TODO: UPDATE FIREBASE TO VERSION 9
+     // const fichasCollectionRef = collection(db, "fichas");
+
+     // const setFicha = () => {
+     //      if (auth.currentUser) {
+
+     //      }
+     // }
+
+     // const handleSignOut = () => {
+     //      auth
+     //           .signOut()
+     //           .then(() => {
+     //                navigation.replace('Login');
+     //           })
+     //           .catch(error => alert(error.message))
+     // }
 
      return (
 

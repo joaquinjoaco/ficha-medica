@@ -4,7 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import { MaterialIcons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { globalStyles } from '../styles/global';
-import { auth } from '../firebase';
+// import { auth } from '../firebase-config';
 
 
 export default function Login({ navigation }) {
@@ -14,34 +14,35 @@ export default function Login({ navigation }) {
      const [willRegister, setWillRegister] = useState(false);
 
      useEffect(() => {
-          const unsuscribe = auth.onAuthStateChanged(user => {
-               if (user) {
-                    navigation.navigate('Home');
-               }
-          })
-          return unsuscribe;
+          // const unsuscribe = auth.onAuthStateChanged(user => {
+          //      if (user) {
+          //           navigation.navigate('Home');
+          //      }
+          // })
+          // return unsuscribe;
      }, []);
 
      // sign up
      const handleSignUp = () => {
-          auth
-               .createUserWithEmailAndPassword(email, password)
-               .then(userCredentials => {
-                    const user = userCredentials.user;
-                    console.log('Registered with:', user.email);
-               })
-               .catch(error => alert(error.message))
+          // auth
+          //      .createUserWithEmailAndPassword(email, password)
+          //      .then(userCredentials => {
+          //           const user = userCredentials.user;
+          //           // console.log('Registered with:', user.email);
+          //           // console.log('Registered with:', user.uid);
+          //      })
+          //      .catch(error => alert(error.message))
      }
 
      // log in
      const handleLogin = () => {
-          auth
-               .signInWithEmailAndPassword(email, password)
-               .then(userCredentials => {
-                    const user = userCredentials.user;
-                    console.log('Logged in with:', user.email);
-               })
-               .catch(error => alert(error.message))
+          // auth
+          //      .signInWithEmailAndPassword(email, password)
+          //      .then(userCredentials => {
+          //           const user = userCredentials.user;
+          //           console.log('Logged in with:', user.email);
+          //      })
+          //      .catch(error => alert(error.message))
      }
 
      // Changes whether the form will be used to Sign up or log in.
