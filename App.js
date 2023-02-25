@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFonts } from "expo-font";
 import Login from './screens/Login';
 import Home from './screens/Home';
+import Edit from './screens/Edit';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Edit from './screens/Edit';
+
+import { auth } from './firebase-config';
+import { onAuthStateChanged } from 'firebase/auth';
+import { StatusBar } from 'expo-status-bar';
+
+
 
 export default function App() {
 
   const Stack = createNativeStackNavigator();
+  const [currentUser, setCurrentUser] = useState();
 
   const [loaded] = useFonts({
     'OpenSans-Bold': require('./assets/fonts/OpenSans-Bold.ttf'),
@@ -19,25 +26,71 @@ export default function App() {
     'OpenSans-SemiBold': require('./assets/fonts/OpenSans-SemiBold.ttf'),
   });
 
+  useEffect(() => {
+    console.log("App.js useEffect ran")
+    onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+    });
+
+  }, [])
+
+
 
   if (!loaded) {
     return null;
   } else {
     return <NavigationContainer>
+
+      <StatusBar style="auto" />
       <Stack.Navigator>
 
-        <Stack.Screen name="Login" component={Login} options={{
-          headerShown: false,
-        }} />
-        <Stack.Screen name="Home" component={Home} options={{
-          headerShown: false,
-        }} />
-        <Stack.Screen name="Edit" component={Edit} options={{
-          headerShown: false,
-        }} />
+        {
+          currentUser ?
+            <>
+              <Stack.Screen name="Home" component={Home} options={{
+                headerShown: false,
+              }} />
+              <Stack.Screen name="Edit" component={Edit} options={{
+                headerShown: false,
+              }} />
+            </>
+            :
+            <Stack.Screen name="Login" component={Login} options={{
+              headerShown: false,
+            }} />
+        }
 
       </Stack.Navigator>
     </NavigationContainer>
+
   }
 
+
+
+
+
+  // onAuthStateChanged(auth, (user) => {
+  //   if (user) {
+  //     // User is signed in
+  //     return <NavigationContainer>
+  //       <Stack.Navigator>
+  //         <Stack.Screen name="Home" component={Home} options={{
+  //           headerShown: false,
+  //         }} />
+  //         <Stack.Screen name="Edit" component={Edit} options={{
+  //           headerShown: false,
+  //         }} />
+  //       </Stack.Navigator>
+  //     </NavigationContainer>
+  //   } else {
+  //     // User has to sign in
+  //     <NavigationContainer>
+  //       <Stack.Navigator>
+  //         <Stack.Screen name="Login" component={Login} options={{
+  //           headerShown: false,
+  //         }} />
+  //       </Stack.Navigator>
+  //     </NavigationContainer>
+  //   }
+  // })
 }

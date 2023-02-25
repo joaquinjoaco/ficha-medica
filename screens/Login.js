@@ -1,48 +1,42 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
 import { MaterialIcons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { globalStyles } from '../styles/global';
-// import { auth } from '../firebase-config';
+import { auth } from '../firebase-config';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { setUpFichaFirstTime } from '../firestoreService';
 
 
-export default function Login({ navigation }) {
+export default function Login({ }) {
 
      const [email, setEmail] = useState('');
      const [password, setPassword] = useState('');
      const [willRegister, setWillRegister] = useState(false);
 
-     useEffect(() => {
-          // const unsuscribe = auth.onAuthStateChanged(user => {
-          //      if (user) {
-          //           navigation.navigate('Home');
-          //      }
-          // })
-          // return unsuscribe;
-     }, []);
-
-     // sign up
+     // Sign up
      const handleSignUp = () => {
-          // auth
-          //      .createUserWithEmailAndPassword(email, password)
-          //      .then(userCredentials => {
-          //           const user = userCredentials.user;
-          //           // console.log('Registered with:', user.email);
-          //           // console.log('Registered with:', user.uid);
-          //      })
-          //      .catch(error => alert(error.message))
+          createUserWithEmailAndPassword(auth, email, password)
+               .then((userCredential) => {
+                    // Signed in
+                    const user = userCredential.user;
+                    console.log('Registered with email:', user.email);
+                    console.log('Registered with id:', user.uid);
+                    setUpFichaFirstTime(user.uid);
+               })
+               .catch(error => alert(error.message));
      }
 
-     // log in
+     // Log in
      const handleLogin = () => {
-          // auth
-          //      .signInWithEmailAndPassword(email, password)
-          //      .then(userCredentials => {
-          //           const user = userCredentials.user;
-          //           console.log('Logged in with:', user.email);
-          //      })
-          //      .catch(error => alert(error.message))
+          signInWithEmailAndPassword(auth, email, password)
+               .then((userCredential) => {
+                    // Signed in
+                    const user = userCredential.user;
+                    console.log('Signed in with email:', user.email);
+                    console.log('Signed in with id:', user.uid);
+               })
+               .catch(error => alert(error.message));
      }
 
      // Changes whether the form will be used to Sign up or log in.
@@ -93,7 +87,6 @@ export default function Login({ navigation }) {
                          <Text style={[styles.loginBtnText, globalStyles.semiBoldText]}>{willRegister ? "Registrarme" : "Iniciar sesión"}</Text>
                     </TouchableOpacity>
                </View>
-               <StatusBar style="auto" />
           </View>
      )
 }

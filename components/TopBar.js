@@ -2,14 +2,14 @@ import React from 'react'
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
 import { globalStyles } from '../styles/global';
 
-export default function TopBar({ propNavigation, setIsSaved, data, setData }) {
+export default function TopBar({ propNavigation, setIsSaved, data, setData, fichaGetTest }) {
      return (
           <View style={styles.topBar}>
                <TouchableOpacity style={styles.editBtn} onPress={() => propNavigation.navigate('Edit', { setIsSaved, data, setData })}>
                     <Text style={[styles.editBtnText, globalStyles.regularText]}>Editar ficha médica</Text>
                </TouchableOpacity>
 
-               <TouchableOpacity style={styles.qrBtn}>
+               <TouchableOpacity style={styles.qrBtn} onPress={() => fichaGetTest()}>
                     <Text style={[styles.qrBtnText, globalStyles.regularText]}>Escanear QR</Text>
                </TouchableOpacity>
           </View>

@@ -9,13 +9,15 @@ import GroupInfo from "../components/saved/GroupInfo";
 import PersonalInfo from "../components/saved/PersonalInfo";
 import PrimaryInfo from "../components/saved/PrimaryInfo";
 import TopBar from "../components/TopBar";
-// import { auth } from "../firebase-config";
-
+import { auth } from "../firebase-config";
+import { signOut } from "firebase/auth";
+import { getFicha } from "../firestoreService";
 
 export default function Home({ navigation }) {
 
      const [isSaved, setIsSaved] = useState(false);
-     // const data = getDataFromFirebase(); <---- custom hook, it should return the data :D
+     // setData = getFicha(auth.currentUser.uid); <---- custom hook, it should return the data 
+     // Ficha medica
      const [data, setData] = useState({
           // (1) Personal Info
           run: 0,
@@ -56,28 +58,23 @@ export default function Home({ navigation }) {
      });
 
 
-     // TODO: UPDATE FIREBASE TO VERSION 9
-     // const fichasCollectionRef = collection(db, "fichas");
+     const handleSignOut = () => {
+          signOut(auth)
+               .then(() => {
+                    navigation.replace('Login');
+                    console.log("sign out successful");
+               })
+               .catch(error => alert(error.message))
+     }
 
-     // const setFicha = () => {
-     //      if (auth.currentUser) {
-
-     //      }
-     // }
-
-     // const handleSignOut = () => {
-     //      auth
-     //           .signOut()
-     //           .then(() => {
-     //                navigation.replace('Login');
-     //           })
-     //           .catch(error => alert(error.message))
-     // }
+     const fichaGetTest = async () => {
+          const datos = await getFicha(auth.currentUser.uid);
+          console.log(datos);
+     }
 
      return (
-
           <View style={styles.home}>
-               <TopBar propNavigation={navigation} setIsSaved={setIsSaved} data={data} setData={setData} />
+               <TopBar propNavigation={navigation} setIsSaved={setIsSaved} data={data} setData={setData} fichaGetTest={fichaGetTest} />
                {!isSaved && <AlertModal text="¡Ups! No has rellenado tu ficha médica." propNavigation={navigation} setIsSaved={setIsSaved} data={data} setData={setData} />}
                {isSaved &&
                     <ScrollView>
@@ -90,6 +87,7 @@ export default function Home({ navigation }) {
                     </ScrollView>
                }
                <Text>{auth.currentUser?.email}</Text>
+               <Text>{auth.currentUser?.uid}</Text>
                <FloatingHomeBtns propNavigation={navigation} handleSignOut={handleSignOut} />
           </View>
      );
