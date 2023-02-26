@@ -1,12 +1,13 @@
-import { addDoc, collection, doc, getDoc, getDocs, query, setDoc, where } from "firebase/firestore";
-import { useState } from "react";
+import { collection, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "./firebase-config";
-
+// TODO: MOVE LOGIN AND LOGOUT AND REGISTER TO THIS FILE
 // fichas medicas db ref 
 const fichasCollectionRef = collection(db, "fichas");
 
 // data
 const data = {
+     // isSaved, will be false for the first time until the users saves its data for the first time
+     isSaved: false,
      // (1) Personal Info
      run: 0,
      apellidos: "",
@@ -45,24 +46,14 @@ const data = {
      medicamentosField: "",
 }
 
-
 // Gets the ficha document with the matching signed in user uid
 export const getFicha = async (userUid) => {
-     // const q = query(collection(db, "fichas"), where("userUid", "==", userUid));
      const fichaDocRef = doc(db, "fichas", userUid);
      try {
           if (userUid) {
                // User is signed in
-               // const querySnapshot = await getDocs(q);
-
-               // querySnapshot.forEach((doc) => {
-               //      // doc.data() is never undefined for query doc snapshots
-               //      console.log(doc.id, " => ", doc.data());
-               //      return doc;
-               // });
                const doc = await getDoc(fichaDocRef);
                return doc.data();
-
           } else {
                // User is not signed in
                return null;
@@ -85,5 +76,17 @@ export const setUpFichaFirstTime = async (userUid) => {
      }
      catch (error) {
           console.log(error);
+     }
+}
+
+export const editFicha = async (userUid, newData) => {
+     try {
+          await updateDoc(doc(fichasCollectionRef, userUid), { ...newData, isSaved: true });
+     }
+     catch (error) {
+          () => {
+               error => alert(error.message);
+          }
+
      }
 }

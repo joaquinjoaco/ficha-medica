@@ -11,8 +11,6 @@ import { auth } from './firebase-config';
 import { onAuthStateChanged } from 'firebase/auth';
 import { StatusBar } from 'expo-status-bar';
 
-
-
 export default function App() {
 
   const Stack = createNativeStackNavigator();
@@ -31,10 +29,7 @@ export default function App() {
     onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
     });
-
   }, [])
-
-
 
   if (!loaded) {
     return null;
@@ -64,33 +59,4 @@ export default function App() {
     </NavigationContainer>
 
   }
-
-
-
-
-
-  // onAuthStateChanged(auth, (user) => {
-  //   if (user) {
-  //     // User is signed in
-  //     return <NavigationContainer>
-  //       <Stack.Navigator>
-  //         <Stack.Screen name="Home" component={Home} options={{
-  //           headerShown: false,
-  //         }} />
-  //         <Stack.Screen name="Edit" component={Edit} options={{
-  //           headerShown: false,
-  //         }} />
-  //       </Stack.Navigator>
-  //     </NavigationContainer>
-  //   } else {
-  //     // User has to sign in
-  //     <NavigationContainer>
-  //       <Stack.Navigator>
-  //         <Stack.Screen name="Login" component={Login} options={{
-  //           headerShown: false,
-  //         }} />
-  //       </Stack.Navigator>
-  //     </NavigationContainer>
-  //   }
-  // })
 }

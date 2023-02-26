@@ -5,8 +5,6 @@ import SwitchSelector from "react-native-switch-selector";
 
 export default function Antecedentes({ newData, setNewData }) {
 
-     const [enfermedadC, setEnfermedadC] = useState(false);
-
      return (
           <View style={styles.container}>
                <View style={styles.title}>

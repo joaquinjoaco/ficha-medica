@@ -1,5 +1,5 @@
 import { View, Text, ScrollView, StyleSheet } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import EditTopBar from '../components/EditTopBar';
 import InfPersonal from '../components/forms/InfPersonal';
 import Grupo from '../components/forms/Grupo';
@@ -15,7 +15,7 @@ export default function Edit({ navigation, route }) {
 
      return (
           <View style={styles.stepContainer}>
-               <EditTopBar step={step} setStep={setStep} propNavigation={navigation} setIsSaved={route.params.setIsSaved} newData={newData} setData={route.params.setData} />
+               <EditTopBar step={step} setStep={setStep} propNavigation={navigation} route={route} newData={newData} />
                <ScrollView>
                     {(() => {
                          switch (step) {
@@ -33,9 +33,6 @@ export default function Edit({ navigation, route }) {
                                    return null
                          }
                     })()}
-                    {/* {newData.antibioticos.map((antibiotico) => {
-                         return (<Text key={antibiotico}>{antibiotico}</Text>)
-                    })} */}
                </ScrollView>
                <View style={styles.stepCounter}>
                     <Text style={[styles.currentStep, globalStyles.boldText]}>{step + "/5"}</Text>

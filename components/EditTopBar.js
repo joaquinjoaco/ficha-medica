@@ -1,12 +1,19 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { auth } from '../firebase-config';
+import { editFicha } from '../firestoreService';
 import { globalStyles } from '../styles/global';
 
-export default function EditTopBar({ step, setStep, propNavigation, setIsSaved, newData, setData }) {
+export default function EditTopBar({ step, setStep, propNavigation, route, newData }) {
 
      const save = () => {
-          setIsSaved(true);
-          setData(newData);
+          // Update firestore with newData
+          editFicha(auth.currentUser.uid, newData);
+          // setData(newData);
+
+          // Set isSaved to true and and set the data to newdata and go back to the home screen. This still shows the serialization warning. 
+          route.params.setDataOnGoBack(newData);
+          route.params.saveOnGoBack(true);
           propNavigation.goBack();
      }
 
