@@ -2,9 +2,10 @@ import React from 'react'
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
 import { globalStyles } from '../styles/global';
 
-export default function TopBar({ propNavigation, setIsSaved, data, setData }) {
+export default function TopBar({ propNavigation, setIsSaved, data, setData, currentUser }) {
      return (
           <View style={styles.topBar}>
+               {/* Editar ficha */}
                <TouchableOpacity style={styles.editBtn}
                     onPress={() => propNavigation.navigate('Edit',
                          {
@@ -16,8 +17,10 @@ export default function TopBar({ propNavigation, setIsSaved, data, setData }) {
                     <Text style={[styles.editBtnText, globalStyles.regularText]}>Editar ficha médica</Text>
                </TouchableOpacity>
 
-               <TouchableOpacity style={styles.qrBtn}>
-                    <Text style={[styles.qrBtnText, globalStyles.regularText]}>Escanear QR</Text>
+               {/* Escanear ficha */}
+               <TouchableOpacity style={styles.scanBtn}
+                    onPress={() => propNavigation.navigate('Scan', { nombres: data.nombres, apellidos: data.apellidos, currentUser })}>
+                    <Text style={[styles.scanBtnText, globalStyles.regularText]}>Escanear QR</Text>
                </TouchableOpacity>
           </View>
      )
@@ -46,7 +49,7 @@ const styles = StyleSheet.create({
           fontSize: 18,
           textAlign: 'center',
      },
-     qrBtn: {
+     scanBtn: {
           backgroundColor: '#000000',
           alignSelf: 'center',
           width: 190,
@@ -54,7 +57,7 @@ const styles = StyleSheet.create({
           paddingHorizontal: 18,
           borderRadius: 10,
      },
-     qrBtnText: {
+     scanBtnText: {
           color: '#FFFFFF',
           fontSize: 18,
           textAlign: 'center',

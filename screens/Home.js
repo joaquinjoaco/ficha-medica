@@ -50,7 +50,7 @@ export default function Home({ navigation }) {
      } else {
           return (
                <View style={styles.home}>
-                    <TopBar propNavigation={navigation} setIsSaved={setIsSaved} data={data} setData={setData} />
+                    <TopBar propNavigation={navigation} setIsSaved={setIsSaved} data={data} setData={setData} currentUser={auth.currentUser.uid} />
                     {
                          isSaved ?
                               <ScrollView>
@@ -64,7 +64,7 @@ export default function Home({ navigation }) {
                               :
                               <AlertModal text="¡Ups! No has rellenado tu ficha médica." propNavigation={navigation} setIsSaved={setIsSaved} data={data} setData={setData} />
                     }
-                    <FloatingHomeBtns propNavigation={navigation} handleSignOut={handleSignOut} />
+                    <FloatingHomeBtns propNavigation={navigation} handleSignOut={handleSignOut} nombres={data.nombres} apellidos={data.apellidos} currentUser={auth.currentUser.uid} />
 
                </View>
           );

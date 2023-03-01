@@ -3,6 +3,8 @@ import { useFonts } from "expo-font";
 import Login from './screens/Login';
 import Home from './screens/Home';
 import Edit from './screens/Edit';
+import Scan from './screens/Scan';
+import Scanned from './screens/Scanned';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -46,6 +48,12 @@ export default function App() {
                 headerShown: false,
               }} />
               <Stack.Screen name="Edit" component={Edit} options={{
+                headerShown: false,
+              }} />
+              <Stack.Screen name="Scan" component={Scan} options={{
+                headerShown: false,
+              }} />
+              <Stack.Screen name="Scanned" component={Scanned} options={{
                 headerShown: false,
               }} />
             </>

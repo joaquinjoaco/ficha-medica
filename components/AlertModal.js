@@ -7,7 +7,14 @@ export default function AlertModal({ text, propNavigation, setIsSaved, data, set
           <View style={styles.modal}>
                <View style={styles.modalContent}>
                     <Text numberOfLines={3} style={[styles.modalText, globalStyles.boldText]}>{text}</Text>
-                    <TouchableOpacity style={styles.editBtn} onPress={() => propNavigation.navigate('Edit', { setIsSaved, data, setData })}>
+                    <TouchableOpacity
+                         style={styles.editBtn}
+                         onPress={() => propNavigation.navigate('Edit',
+                              {
+                                   data,
+                                   setDataOnGoBack: (value) => setData(value),
+                                   saveOnGoBack: (value) => setIsSaved(value)
+                              })}>
                          <Text style={[styles.editBtnText, globalStyles.regularText]}>Editar ficha médica</Text>
                     </TouchableOpacity>
                </View>
