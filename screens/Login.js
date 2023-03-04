@@ -6,14 +6,25 @@ import { globalStyles } from '../styles/global';
 import { auth } from '../firebase-config';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { setUpFichaFirstTime } from '../firestoreService';
+import AlertErrorModal from '../components/AlertErrorModal';
+import { translateError } from '../FirebaseErrorTranslation';
 
 
-export default function Login({ }) {
+export default function Login() {
 
-     const [email, setEmail] = useState('');
-     const [password, setPassword] = useState('');
+     const [email, setEmail] = useState("");
+     const [password, setPassword] = useState("");
      const [willRegister, setWillRegister] = useState(false);
+     const [showModal, setShowModal] = useState(false);
+     // Modal
+     const [message, setMessage] = useState("");
+     const [buttonText, setButtonText] = useState("");
 
+     const showModalOnError = (message, buttonText) => {
+          setMessage(message);
+          setButtonText(buttonText);
+          setShowModal(true);
+     }
      // Sign up
      const handleSignUp = () => {
           createUserWithEmailAndPassword(auth, email, password)
@@ -24,7 +35,11 @@ export default function Login({ }) {
                     console.log('Registered with id:', user.uid);
                     setUpFichaFirstTime(user.uid);
                })
-               .catch(error => alert(error.message));
+               .catch(error => {
+                    // alert(error.message);
+                    // showModalOnError("Error inespecificado", "Ok")
+                    console.log(error.message + 'code: ' + error.code);
+               });
      }
 
      // Log in
@@ -36,7 +51,10 @@ export default function Login({ }) {
                     console.log('Signed in with email:', user.email);
                     console.log('Signed in with id:', user.uid);
                })
-               .catch(error => alert(error.message));
+               .catch(error => {
+                    showModalOnError(translateError(error.code), "Ok");
+                    console.log(error.message + ' code: ' + error.code);
+               });
      }
 
      // Changes whether the form will be used to Sign up or log in.
@@ -46,6 +64,7 @@ export default function Login({ }) {
 
      return (
           <View style={styles.container}>
+
                <View style={styles.hero}>
                     <Text style={[styles.heroTitle, globalStyles.boldText]}>MiFicha</Text>
                     <MaterialCommunityIcons name="qrcode-scan" size={26} color="black" />
@@ -87,6 +106,9 @@ export default function Login({ }) {
                          <Text style={[styles.loginBtnText, globalStyles.semiBoldText]}>{willRegister ? "Registrarme" : "Iniciar sesión"}</Text>
                     </TouchableOpacity>
                </View>
+
+               {showModal && <AlertErrorModal message={message} buttonText={buttonText} close={() => setShowModal(false)} />}
+
           </View>
      )
 }
@@ -158,6 +180,8 @@ const styles = StyleSheet.create({
      },
      willRegister: {
           marginTop: 8,
+          padding: 8,
+          paddingLeft: 0,
           fontSize: 14,
           color: '#0066CC',
           textDecorationLine: 'underline',

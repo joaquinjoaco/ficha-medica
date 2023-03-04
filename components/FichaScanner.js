@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { globalStyles } from '../styles/global';
-import { auth } from '../firebase-config';
 
 export default function FichaScanner({ propNavigation }) {
      const [hasPermission, setHasPermission] = useState(null);

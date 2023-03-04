@@ -40,7 +40,6 @@ export default function App() {
 
       <StatusBar style="auto" />
       <Stack.Navigator>
-
         {
           currentUser ?
             <>
