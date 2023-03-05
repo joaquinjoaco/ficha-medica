@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from "react-native";
 import AlertModal from "../components/AlertModal";
 import FloatingHomeBtns from "../components/FloatingHomeBtns";
 import Alergias from "../components/saved/Alergias";
@@ -45,7 +45,9 @@ export default function Home({ navigation }) {
 
      if (!data) {
           return (
-               <Text>CARGANDO PLIS ESPERAR!!!</Text>
+               <View style={styles.activityIndicator}>
+                    <ActivityIndicator size={64} color="#0066CC" />
+               </View>
           )
      } else {
           return (
@@ -76,5 +78,9 @@ const styles = StyleSheet.create({
      home: {
           flex: 1,
           backgroundColor: '#F2F3F4',
+     },
+     activityIndicator: {
+          flex: 1,
+          justifyContent: 'center',
      },
 })

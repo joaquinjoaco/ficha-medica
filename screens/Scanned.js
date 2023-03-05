@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from "react-native";
+import AlertErrorModal from "../components/AlertErrorModal";
 import Alergias from "../components/saved/Alergias";
 import AntecedentesSaved from "../components/saved/AntecedentesSaved";
 import EmergencyPhone from "../components/saved/EmergencyPhone";
@@ -7,19 +8,30 @@ import GroupInfo from "../components/saved/GroupInfo";
 import PersonalInfo from "../components/saved/PersonalInfo";
 import PrimaryInfo from "../components/saved/PrimaryInfo";
 import ScanTopBar from "../components/ScanTopBar";
-import { auth } from "../firebase-config";
+import { translateError } from "../FirebaseErrorTranslation";
 import { getFicha } from "../firestoreService";
 
 export default function Scanned({ navigation, route }) {
      const [scannedData, setScannedData] = useState(null);
+
+     // Modal
+     const [showModal, setShowModal] = useState(false);
+     const [message, setMessage] = useState("");
+     const [buttonText, setButtonText] = useState("");
+
+     const showModalOnError = (message, buttonText) => {
+          setMessage(message);
+          setButtonText(buttonText);
+          setShowModal(true);
+     }
 
      const getDataFromFirebase = async () => {
           try {
                const ficha = await getFicha(route.params.uid);
                setScannedData(ficha);
           } catch (error) {
-               console.log("Error: ", error);
-               alert(error.message);
+               showModalOnError("Código inválido", "Volver");
+               console.log("Código no válido ", error);
           }
      }
 
@@ -30,7 +42,16 @@ export default function Scanned({ navigation, route }) {
 
      if (!scannedData) {
           return (
-               <Text>CARGANDO PLIS ESPERAR!!!</Text>
+               <>
+                    <View style={styles.activityIndicator}>
+                         <ActivityIndicator size={64} color="#0066CC" />
+                    </View>
+                    {showModal && <AlertErrorModal message={message} buttonText={buttonText} close={() => {
+                         setShowModal(false);
+                         navigation.goBack();
+                    }} />}
+               </>
+
           )
      } else {
           return (
@@ -54,5 +75,9 @@ const styles = StyleSheet.create({
      scanned: {
           flex: 1,
           backgroundColor: '#F2F3F4',
+     },
+     activityIndicator: {
+          flex: 1,
+          justifyContent: 'center',
      },
 })

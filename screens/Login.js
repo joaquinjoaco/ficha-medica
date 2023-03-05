@@ -15,8 +15,9 @@ export default function Login() {
      const [email, setEmail] = useState("");
      const [password, setPassword] = useState("");
      const [willRegister, setWillRegister] = useState(false);
-     const [showModal, setShowModal] = useState(false);
+
      // Modal
+     const [showModal, setShowModal] = useState(false);
      const [message, setMessage] = useState("");
      const [buttonText, setButtonText] = useState("");
 
@@ -37,7 +38,7 @@ export default function Login() {
                })
                .catch(error => {
                     // alert(error.message);
-                    // showModalOnError("Error inespecificado", "Ok")
+                    showModalOnError(translateError(error.code), "Ok");
                     console.log(error.message + 'code: ' + error.code);
                });
      }
