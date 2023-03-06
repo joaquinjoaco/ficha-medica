@@ -24,8 +24,10 @@ export default function Login() {
      const showModalOnError = (message, buttonText) => {
           setMessage(message);
           setButtonText(buttonText);
+          // modal is shown with the respective error message
           setShowModal(true);
      }
+
      // Sign up
      const handleSignUp = () => {
           createUserWithEmailAndPassword(auth, email, password)
@@ -37,7 +39,6 @@ export default function Login() {
                     setUpFichaFirstTime(user.uid);
                })
                .catch(error => {
-                    // alert(error.message);
                     showModalOnError(translateError(error.code), "Ok");
                     console.log(error.message + 'code: ' + error.code);
                });
