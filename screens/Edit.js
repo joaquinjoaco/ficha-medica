@@ -1,5 +1,5 @@
 import { View, Text, ScrollView, StyleSheet } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import EditTopBar from '../components/EditTopBar';
 import InfPersonal from '../components/forms/InfPersonal';
 import Grupo from '../components/forms/Grupo';
@@ -7,15 +7,29 @@ import Antecedentes1 from '../components/forms/Antecedentes1';
 import Antecedentes2 from '../components/forms/Antecedentes2';
 import Antecedentes3 from '../components/forms/Antecedentes3';
 import { globalStyles } from '../styles/global';
+import AlertErrorModal from '../components/AlertErrorModal';
 
 export default function Edit({ navigation, route }) {
 
      const [step, setStep] = useState(1);
      const [newData, setNewData] = useState({ ...route.params.data });
 
+     // Modal
+     const [showModal, setShowModal] = useState(false);
+     const [message, setMessage] = useState("");
+     const [buttonText, setButtonText] = useState("");
+
+     const showModalOnError = (message, buttonText) => {
+          setMessage(message);
+          setButtonText(buttonText);
+          // modal is shown with the respective error message
+          setShowModal(true);
+     }
+
+
      return (
           <View style={styles.stepContainer}>
-               <EditTopBar step={step} setStep={setStep} propNavigation={navigation} route={route} newData={newData} />
+               <EditTopBar step={step} setStep={setStep} propNavigation={navigation} route={route} newData={newData} showModalOnError={showModalOnError} />
                <ScrollView>
                     {(() => {
                          switch (step) {
@@ -44,6 +58,7 @@ export default function Edit({ navigation, route }) {
                          <View style={[styles.dot, step === 5 && { backgroundColor: '#0066CC' }]}></View>
                     </View>
                </View>
+               {showModal && <AlertErrorModal message={message} buttonText={buttonText} close={() => setShowModal(false)} />}
           </View>
      )
 }

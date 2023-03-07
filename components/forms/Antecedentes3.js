@@ -38,7 +38,7 @@ export default function Antecedentes({ newData, setNewData }) {
                                         ]}
                                         onPress={(value) => {
                                              // Clears the string when pressing the opposite option
-                                             { value === newData.hasEnfermedad ? null : setNewData({ ...newData, hasEnfermedad: value, enfermedad: "" }) }
+                                             { value === newData.hasEnfermedad ? null : setNewData({ ...newData, hasEnfermedad: value, enfermedad: "Sin datos" }) }
                                         }}
                                         style={{
                                              width: 90,

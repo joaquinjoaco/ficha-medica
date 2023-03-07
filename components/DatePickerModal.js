@@ -1,20 +1,20 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import React from 'react'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
 import { globalStyles } from '../styles/global';
 
-export default function AlertErrorModal({ message, buttonText, close }) {
+export default function DatePickerModal({ close }) {
+
+     const [date, setDate] = useState(new Date());
 
      return (
           <View style={styles.modal}>
                <View style={styles.content}>
 
-                    <Text style={[styles.title, globalStyles.boldText]}>Ups!</Text>
-
-                    <Text style={[styles.message, globalStyles.mediumText]}>{message}</Text>
+                    <Text style={[styles.title, globalStyles.boldText]}>Seleccionar fecha</Text>
 
                     <TouchableOpacity style={styles.btn}
-                         onPress={() => { close() }}>
-                         <Text style={[styles.btnText, globalStyles.regularText]}>{buttonText}</Text>
+                         onPress={() => close()}>
+                         <Text style={[styles.btnText, globalStyles.regularText]}>Confirmar</Text>
                     </TouchableOpacity>
 
                </View>
@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
           left: 0,
           right: 0,
           flex: 1,
-          backgroundColor: 'rgba(0,0,0, 0.6)',
      },
      content: {
           top: '40%',

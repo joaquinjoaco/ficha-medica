@@ -1,8 +1,12 @@
-import { View, Text, TextInput, StyleSheet } from 'react-native'
-import React from 'react'
+import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
+import React, { useState } from 'react'
 import { globalStyles } from '../../styles/global';
+import DatePickerModal from '../DatePickerModal';
 
 export default function InfPersonal({ newData, setNewData }) {
+     const [date, setDate] = useState("Fecha");
+     const [open, setOpen] = useState(false);
+
      return (
           <View style={styles.container}>
                <View style={styles.title}>
@@ -70,11 +74,17 @@ export default function InfPersonal({ newData, setNewData }) {
                          {/* TODO: Make the date input field a proper date input field. */}
                          <View style={styles.input}>
                               <Text style={[styles.labelText, globalStyles.boldText]}>Fecha de Nacimiento</Text>
-                              <TextInput
+                              {/* <TextInput
                                    value={newData.fechaNac}
                                    onChangeText={text => setNewData({ ...newData, fechaNac: text })}
                                    style={[styles.textInput, globalStyles.semiBoldText]}
-                              />
+                              /> */}
+                              <TouchableOpacity
+                                   style={styles.textInput}
+                                   onPress={() => setOpen(true)}
+                              >
+                                   <Text style={globalStyles.semiBoldText}>{date.toString()}</Text>
+                              </TouchableOpacity>
                          </View>
                          <View style={styles.input}>
                               <Text style={[styles.labelText, globalStyles.boldText]}>Nombres</Text>
@@ -108,9 +118,9 @@ export default function InfPersonal({ newData, setNewData }) {
                                    style={[styles.textInput, globalStyles.semiBoldText]}
                               />
                          </View>
-
                     </View>
                </View>
+               {open && <DatePickerModal close={() => setOpen(false)} />}
           </View>
      )
 }

@@ -39,7 +39,7 @@ export default function Login() {
                     setUpFichaFirstTime(user.uid);
                })
                .catch(error => {
-                    showModalOnError(translateError(error.code), "Ok");
+                    showModalOnError(translateError(error.code), "Entendido");
                     console.log(error.message + 'code: ' + error.code);
                });
      }
@@ -54,7 +54,7 @@ export default function Login() {
                     console.log('Signed in with id:', user.uid);
                })
                .catch(error => {
-                    showModalOnError(translateError(error.code), "Ok");
+                    showModalOnError(translateError(error.code), "Entendido");
                     console.log(error.message + ' code: ' + error.code);
                });
      }
@@ -103,11 +103,12 @@ export default function Login() {
 
                     </View>
 
-                    {/* Button */}
-                    <TouchableOpacity style={[styles.loginBtn, willRegister && styles.registerBtn]} onPress={() => { willRegister ? handleSignUp() : handleLogin() }}>
-                         <Text style={[styles.loginBtnText, globalStyles.semiBoldText]}>{willRegister ? "Registrarme" : "Iniciar sesión"}</Text>
-                    </TouchableOpacity>
                </View>
+
+               {/* Button */}
+               <TouchableOpacity style={[styles.loginBtn, willRegister && styles.registerBtn]} onPress={() => { willRegister ? handleSignUp() : handleLogin() }}>
+                    <Text style={[styles.loginBtnText, globalStyles.semiBoldText]}>{willRegister ? "Registrarme" : "Iniciar sesión"}</Text>
+               </TouchableOpacity>
 
                {showModal && <AlertErrorModal message={message} buttonText={buttonText} close={() => setShowModal(false)} />}
 
@@ -131,8 +132,9 @@ const styles = StyleSheet.create({
      },
      loginForm: {
           backgroundColor: '#FFFFFF',
-          width: 335,
-          height: 290,
+          alignSelf: 'stretch',
+          marginHorizontal: 38,
+          height: 270,
           borderRadius: 10,
      },
      loginInputs: {
@@ -162,14 +164,13 @@ const styles = StyleSheet.create({
           marginLeft: 8,
           marginBottom: 4,
      },
-
      loginBtn: {
           backgroundColor: '#0066CC',
-          alignSelf: 'center',
-          width: 180,
-          paddingVertical: 10,
-          paddingHorizontal: 18,
-          marginBottom: -20,
+          alignSelf: 'stretch',
+          marginHorizontal: 38,
+          paddingVertical: 16,
+          paddingHorizontal: 24,
+          marginTop: 8,
           borderRadius: 10,
      },
      loginBtnText: {

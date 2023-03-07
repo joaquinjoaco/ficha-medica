@@ -55,7 +55,7 @@ export default function Antecedentes({ newData, setNewData }) {
                                         ]}
                                         onPress={(value) => {
                                              // Clears the antibioticos array when pressing the opposite option
-                                             { value === newData.hasAntibioticos ? null : setNewData({ ...newData, hasAntibioticos: value, antibioticos: [] }) }
+                                             { value === newData.hasAntibioticos ? null : setNewData({ ...newData, hasAntibioticos: value, antibioticos: ["Ninguno"] }) }
                                         }}
                                         style={{
                                              width: 90,
@@ -70,7 +70,7 @@ export default function Antecedentes({ newData, setNewData }) {
                               <View style={styles.bottom}>
                                    {newData.hasAntibioticos && <TextInput
                                         value={newData.antibioticos.toString()}
-                                        onChangeText={text => setNewData({ ...newData, antibioticos: text.split(',') })}
+                                        onChangeText={text => { setNewData({ ...newData, antibioticos: text.split(',') }); console.log(newData.antibioticos) }}
                                         style={[styles.textInput, globalStyles.semiBoldText]}
                                         placeholder="Separados por comas (Penicilina, Amoxicilina...)" />}
                               </View>
@@ -95,7 +95,7 @@ export default function Antecedentes({ newData, setNewData }) {
                                              { label: "No", value: false }
                                         ]}
                                         onPress={(value) => {
-                                             { value === newData.hasMedicamentos ? null : setNewData({ ...newData, hasMedicamentos: value, medicamentos: [] }) }
+                                             { value === newData.hasMedicamentos ? null : setNewData({ ...newData, hasMedicamentos: value, medicamentos: ["Ninguno"] }) }
                                         }}
                                         style={{
                                              width: 90,
@@ -135,7 +135,7 @@ export default function Antecedentes({ newData, setNewData }) {
                                              { label: "No", value: false }
                                         ]}
                                         onPress={(value) => {
-                                             { value === newData.hasAlimentos ? null : setNewData({ ...newData, hasAlimentos: value, alimentos: [] }) }
+                                             { value === newData.hasAlimentos ? null : setNewData({ ...newData, hasAlimentos: value, alimentos: ["Ninguno"] }) }
                                         }}
                                         style={{
                                              width: 90,
@@ -175,7 +175,7 @@ export default function Antecedentes({ newData, setNewData }) {
                                              { label: "No", value: false }
                                         ]}
                                         onPress={(value) => {
-                                             { value === newData.hasAnimales ? null : setNewData({ ...newData, hasAnimales: value, animales: [] }) }
+                                             { value === newData.hasAnimales ? null : setNewData({ ...newData, hasAnimales: value, animales: ["Ninguno"] }) }
                                         }}
                                         style={{
                                              width: 90,
