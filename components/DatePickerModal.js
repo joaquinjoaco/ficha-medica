@@ -6,11 +6,25 @@ export default function DatePickerModal({ close }) {
 
      const [date, setDate] = useState(new Date());
 
+     const handleConfirm = (date) => {
+          console.log('chosen: ', date);
+     }
+     const hideDatePicker = () => {
+
+     }
+
      return (
           <View style={styles.modal}>
                <View style={styles.content}>
 
                     <Text style={[styles.title, globalStyles.boldText]}>Seleccionar fecha</Text>
+
+                    <DateTimePickerModal
+                         isVisible={true}
+                         mode="date"
+                         onConfirm={handleConfirm}
+                         onCancel={hideDatePicker}
+                    />
 
                     <TouchableOpacity style={styles.btn}
                          onPress={() => close()}>

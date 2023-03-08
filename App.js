@@ -38,7 +38,7 @@ export default function App() {
   } else {
     return <NavigationContainer>
 
-      <StatusBar style="auto" />
+      <StatusBar style="automatic" />
       <Stack.Navigator>
         {
           currentUser ?

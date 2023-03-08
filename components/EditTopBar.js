@@ -13,33 +13,14 @@ export default function EditTopBar({ step, setStep, propNavigation, route, newDa
                // Update firestore with newData
                editFicha(auth.currentUser.uid, newData);
                // Set isSaved to true and and set the data to newdata and go back to the home screen. This still shows the serialization warning. 
-               // setData(newData);
+               // used to set the data like this: 'setData(newData);' but new way still gives the same warning.
                route.params.setDataOnGoBack(newData);
                route.params.saveOnGoBack(true);
                propNavigation.goBack();
           } else {
                showModalOnError("Hay campos vacíos. \nPor favor revísalos.", "Entendido")
-               // FIX THE ALERGIES PANEL WHERE THE ONCHANGETEXT SETS AN EMPTY ITEM IN THE ARRAY WHEN THE USER DELETES WHAT WAS WRITTEN IN THE TEXTINPUT
-               // THIS ONLY HAPPENS WITH THE ALERGIES BECAUSE THEY ARE BEING SPLIT INTO A TEXT, MAYBE WE SHOULD CHECK IF THE TEXTINPUT IS EMPTY BEFORE SPLITTING ITS EMPTY CONTENT INTO AN ARRAY, CAUSING THE ARRAY TO HAVE AN EMPTY ITEM, THUS MAKING THE VALIDATION PASS
           }
 
-     }
-
-     // Validates the data and goes forwards or backwards a step
-     const validateAndGoForward = (goForward) => {
-          if (goForward) {
-               if (validateData(newData)) {
-                    setStep(step + 1)
-               } else {
-                    showModalOnError("Hay campos vacíos.", "Entendido")
-               }
-          } else {
-               if (validateData(newData)) {
-                    setStep(step - 1)
-               } else {
-                    showModalOnError("Hay campos vacíos.", "Entendido")
-               }
-          }
      }
 
      return (

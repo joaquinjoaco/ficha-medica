@@ -1,11 +1,25 @@
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { globalStyles } from '../../styles/global';
-import DatePickerModal from '../DatePickerModal';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 export default function InfPersonal({ newData, setNewData }) {
-     const [date, setDate] = useState("Fecha");
-     const [open, setOpen] = useState(false);
+     const [date, setDate] = useState("");
+     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+
+     // Sets the picked date
+     const handleConfirm = (pickedDate) => {
+          // sets the new date on the newData object
+          setNewData({ ...newData, fechaNac: pickedDate.getDate() + "/" + pickedDate.getMonth() + "/" + pickedDate.getFullYear() })
+          // setDate(pickedDate.getDate() + "/" + pickedDate.getMonth() + "/" + pickedDate.getFullYear());
+          setDatePickerVisibility(false);
+     }
+
+     // Hides the date picker
+     const hideDatePicker = () => {
+          setDatePickerVisibility(false);
+          console.log('Date picker hidden')
+     };
 
      return (
           <View style={styles.container}>
@@ -80,10 +94,10 @@ export default function InfPersonal({ newData, setNewData }) {
                                    style={[styles.textInput, globalStyles.semiBoldText]}
                               /> */}
                               <TouchableOpacity
-                                   style={styles.textInput}
-                                   onPress={() => setOpen(true)}
+                                   style={styles.fechaButton}
+                                   onPress={() => setDatePickerVisibility(true)}
                               >
-                                   <Text style={globalStyles.semiBoldText}>{date.toString()}</Text>
+                                   <Text style={globalStyles.semiBoldText}>{newData.fechaNac === "" ? "Seleccionar fecha" : newData.fechaNac}</Text>
                               </TouchableOpacity>
                          </View>
                          <View style={styles.input}>
@@ -120,7 +134,15 @@ export default function InfPersonal({ newData, setNewData }) {
                          </View>
                     </View>
                </View>
-               {open && <DatePickerModal close={() => setOpen(false)} />}
+
+               {/* Date picker */}
+               <DateTimePickerModal
+                    isVisible={isDatePickerVisible}
+                    mode="date"
+                    onConfirm={handleConfirm}
+                    onCancel={hideDatePicker}
+               />
+
           </View>
      )
 }
@@ -176,6 +198,14 @@ const styles = StyleSheet.create({
           backgroundColor: '#F2F3F4',
           borderRadius: 10,
           paddingVertical: 3,
+          paddingHorizontal: 12,
+          fontSize: 16,
+     },
+
+     fechaButton: {
+          backgroundColor: '#F2F3F4',
+          borderRadius: 10,
+          paddingVertical: 9.5,
           paddingHorizontal: 12,
           fontSize: 16,
      },
