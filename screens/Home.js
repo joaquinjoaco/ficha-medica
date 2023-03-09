@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, ScrollView, StyleSheet, View } from "react-native";
 import AlertModal from "../components/AlertModal";
 import FloatingHomeBtns from "../components/FloatingHomeBtns";
 import Alergias from "../components/saved/Alergias";
@@ -29,7 +29,6 @@ export default function Home({ navigation }) {
      }
 
      useEffect(() => {
-          // getDataFromFirebase().catch(err => console.log('Error:', err));
           getDataFromFirebase();
           console.log("Home.js UseEffect ran");
      }, []);
@@ -37,7 +36,6 @@ export default function Home({ navigation }) {
      const handleSignOut = () => {
           signOut(auth)
                .then(() => {
-                    // navigation.replace('Login');
                     console.log("sign out successful");
                })
                .catch(error => alert(error.message))

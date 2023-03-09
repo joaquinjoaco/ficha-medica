@@ -14,7 +14,7 @@ export default function UserQR({ currentUser, fullName }) {
                          color="black"
                          backgroundColor="#FFFFFF"
                     />
-                    <Text style={[styles.nombre, globalStyles.boldText]}>{fullName !== "" ? "Sin nombre" : fullName}</Text>
+                    <Text style={[styles.nombre, globalStyles.boldText]}>{fullName === "" ? "Sin nombre" : fullName}</Text>
                </View>
           </View>
      )

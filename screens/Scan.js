@@ -5,6 +5,9 @@ import UserQR from '../components/UserQR';
 import FichaScanner from '../components/FichaScanner';
 
 export default function Scan({ navigation, route }) {
+
+     const fullName = route.params.nombres + ' ' + route.params.apellidos;
+
      return (
           <View>
                <ScanTopBar propNavigation={navigation} isScanned={false} />
@@ -13,7 +16,7 @@ export default function Scan({ navigation, route }) {
                          {/* Camera */}
                          <FichaScanner propNavigation={navigation} />
                          {/* QR Code */}
-                         <UserQR currentUser={route.params.currentUser} fullName={route.params.nombres + ' ' + route.params.apellidos} />
+                         <UserQR currentUser={route.params.currentUser} fullName={fullName} />
                     </View>
                </ScrollView >
           </View>
