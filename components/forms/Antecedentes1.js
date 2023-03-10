@@ -1,11 +1,9 @@
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
-import React, { useState } from 'react';
+import React from 'react';
 import { globalStyles } from '../../styles/global';
 import SwitchSelector from "react-native-switch-selector";
 
 export default function Antecedentes({ newData, setNewData }) {
-
-
 
      return (
           <View style={styles.container}>

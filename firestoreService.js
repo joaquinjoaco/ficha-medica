@@ -33,15 +33,15 @@ const data = {
      hasAlimentos: false,
      hasAnimales: false,
 
-     antibioticos: [],
-     medicamentos: [],
-     alimentos: [],
-     animales: [],
+     antibioticos: ["Ninguno"],
+     medicamentos: ["Ninguno"],
+     alimentos: ["Ninguno"],
+     animales: ["Ninguno"],
      // (4) Antecedentes
      intervencionesField: "",
      // (5) Antecedentes TODO: enfermedad cronica switch
      hasEnfermedad: false,
-     enfermedad: "",
+     enfermedad: "Sin datos",
      tratamientoField: "",
      medicamentosField: "",
 }
